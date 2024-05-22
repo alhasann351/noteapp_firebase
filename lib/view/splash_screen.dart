@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:noteapp_firebase/resources/colors/app-colors.dart';
 import 'package:noteapp_firebase/view_models/services/splash_services.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -24,11 +25,13 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
+        color: AppColors.lightSplashColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             LottieBuilder.asset('assets/lotties/Animation - 1716331126656.json'),
+            Text('Notes App', style: TextStyle(),),
           ],
         ),
       ),
