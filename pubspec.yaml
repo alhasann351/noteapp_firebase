@@ -43,6 +43,7 @@ dependencies:
   firebase_storage:
   cloud_firestore:
   loading_animation_widget: ^1.2.1
+  auto_size_text:
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:noteapp_firebase/resources/routes/routes_name.dart';
+import 'package:noteapp_firebase/view/choose_language_screen.dart';
 import 'package:noteapp_firebase/view/login_screen.dart';
 import 'package:noteapp_firebase/view/notes_screen.dart';
 import 'package:noteapp_firebase/view/signup_screen.dart';
@@ -28,6 +29,12 @@ class AppRoutes {
         GetPage(
           name: RoutesName.notesScreen,
           page: () => const NotesScreen(),
+          transition: Transition.leftToRightWithFade,
+          transitionDuration: const Duration(milliseconds: 250),
+        ),
+        GetPage(
+          name: RoutesName.chooseLanguageScreen,
+          page: () => const ChooseLanguageScreen(),
           transition: Transition.leftToRightWithFade,
           transitionDuration: const Duration(milliseconds: 250),
         ),

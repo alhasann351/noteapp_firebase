@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:noteapp_firebase/resources/components/app_drawer.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
 
 class NotesScreen extends StatefulWidget {
@@ -15,23 +16,10 @@ class _NotesScreenState extends State<NotesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Notes App'),),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            /*Row(
-              children: [
-                Text('Dark Mode'),
-
-              ],
-            )*/
-            Obx((){
-              return Switch(value: themeController.isDarkMode.value, onChanged: (value){
-                themeController.switchTheme();
-              });
-            })
-          ],
-        ),
+      appBar: AppBar(title: Text('splash_text'.tr),),
+      drawer: AppDrawer(),
+      body: SafeArea(
+        child: Text('Data', style: TextStyle(fontWeight: FontWeight.bold),),
       ),
     );
   }

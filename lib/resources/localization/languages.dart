@@ -1,14 +1,18 @@
 import 'package:get/get.dart';
+import 'package:noteapp_firebase/resources/fonts/english_font.dart';
+import 'package:noteapp_firebase/responsive_widget.dart';
 
 class Languages extends Translations{
   @override
   Map<String, Map<String, String>> get keys => {
     'en_US' : {
-      'splash_text' : 'Notes App',
+      'english_language' : 'English',
+      'bangla_language' : 'Bangla',
     },
 
-    'bn_BN' : {
-      'splash_text' : 'নোটস অ্যাপ',
+    'bn_BD' : {
+      'english_language' : 'ইংলিশ',
+      'bangla_language' : 'বাংলা',
     },
 
   };

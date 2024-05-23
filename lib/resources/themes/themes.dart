@@ -8,7 +8,13 @@ class Themes{
     appBarTheme: const AppBarTheme(
       color: AppColors.appBarColor,
     ),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: AppColors.primaryLightColor,
+    ),
     scaffoldBackgroundColor: AppColors.primaryLightColor,
+    radioTheme: const RadioThemeData(
+      fillColor: MaterialStatePropertyAll(AppColors.radioFillColor),
+    ),
   );
 
   final ThemeData darkTheme = ThemeData(
@@ -17,6 +23,12 @@ class Themes{
     appBarTheme: const AppBarTheme(
       color: AppColors.appBarColor,
     ),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: AppColors.primaryDarkColor,
+    ),
     scaffoldBackgroundColor: AppColors.primaryDarkColor,
+    radioTheme: const RadioThemeData(
+      fillColor: MaterialStatePropertyAll(AppColors.radioFillColor),
+    ),
   );
 }
