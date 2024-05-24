@@ -11,17 +11,26 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Column(
-        children: [
-          Obx(() {
-            return Switch(
-                value: themeController.isDarkMode.value,
-                onChanged: (value) {
-                  themeController.switchTheme();
-                });
-          }),
-        ],
+    return SafeArea(
+      child: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(child: Column(
+              children: [],
+            ),),
+            Column(
+              children: [
+                Obx(() {
+                  return Switch(
+                      value: themeController.isDarkMode.value,
+                      onChanged: (value) {
+                        themeController.switchTheme();
+                      });
+                }),
+              ],
+            ),
+          ],
+        )
       ),
     );
   }

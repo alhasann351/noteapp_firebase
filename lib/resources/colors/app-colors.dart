@@ -11,6 +11,6 @@ class AppColors{
   static const Color splashLoadingColor = Color(0xFFdee0f9);
   static const Color textColor = Color(0xFFdee0f9);
   static const Color whiteColor = Colors.white;
-  static const Color radioButtonColor = Color(0xFF0C359E);
+  static const Color drawerHeaderColor = Color(0xFF0C359E);
   static const Color buttonColor = Color(0xFF6a7dff);
 }

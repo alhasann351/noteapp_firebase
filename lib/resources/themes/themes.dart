@@ -7,9 +7,17 @@ class Themes{
     brightness: Brightness.light,
     appBarTheme: const AppBarTheme(
       color: AppColors.appBarColor,
+      titleTextStyle: TextStyle(
+        color: AppColors.whiteColor,
+      ),
     ),
     drawerTheme: const DrawerThemeData(
       backgroundColor: AppColors.primaryLightColor,
+    ),
+    iconButtonTheme: const IconButtonThemeData(
+      style: ButtonStyle(
+        iconColor: MaterialStatePropertyAll(AppColors.whiteColor),
+      ),
     ),
     scaffoldBackgroundColor: AppColors.primaryLightColor,
   );
@@ -19,9 +27,17 @@ class Themes{
     brightness: Brightness.dark,
     appBarTheme: const AppBarTheme(
       color: AppColors.appBarColor,
+      titleTextStyle: TextStyle(
+        color: AppColors.whiteColor,
+      ),
     ),
     drawerTheme: const DrawerThemeData(
       backgroundColor: AppColors.primaryDarkColor,
+    ),
+    iconButtonTheme: const IconButtonThemeData(
+      style: ButtonStyle(
+        iconColor: MaterialStatePropertyAll(AppColors.whiteColor),
+      ),
     ),
     scaffoldBackgroundColor: AppColors.primaryDarkColor,
   );
