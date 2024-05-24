@@ -90,9 +90,9 @@ flutter:
         - asset: assets/fonts/Amaranth-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-    - family: Nakkhatra
-      fonts:
-        - asset: assets/fonts/Nakkhatra-Regular.ttf
+    #- family: Nakkhatra
+      #fonts:
+        #- asset: assets/fonts/Nakkhatra-Regular.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

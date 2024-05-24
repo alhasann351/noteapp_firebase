@@ -12,9 +12,6 @@ class Themes{
       backgroundColor: AppColors.primaryLightColor,
     ),
     scaffoldBackgroundColor: AppColors.primaryLightColor,
-    radioTheme: const RadioThemeData(
-      fillColor: MaterialStatePropertyAll(AppColors.radioFillColor),
-    ),
   );
 
   final ThemeData darkTheme = ThemeData(
@@ -27,8 +24,5 @@ class Themes{
       backgroundColor: AppColors.primaryDarkColor,
     ),
     scaffoldBackgroundColor: AppColors.primaryDarkColor,
-    radioTheme: const RadioThemeData(
-      fillColor: MaterialStatePropertyAll(AppColors.radioFillColor),
-    ),
   );
 }

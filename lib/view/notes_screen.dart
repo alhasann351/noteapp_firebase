@@ -16,11 +16,12 @@ class _NotesScreenState extends State<NotesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('splash_text'.tr),),
-      drawer: AppDrawer(),
-      body: SafeArea(
-        child: Text('Data', style: TextStyle(fontWeight: FontWeight.bold),),
-      ),
-    );
+        appBar: AppBar(
+          title: Text('choose'.tr),
+        ),
+        drawer: AppDrawer(),
+        body: const SafeArea(
+          child: Text('data'),
+        ));
   }
 }
