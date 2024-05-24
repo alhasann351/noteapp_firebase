@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:noteapp_firebase/resources/colors/app-colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeController extends GetxController{

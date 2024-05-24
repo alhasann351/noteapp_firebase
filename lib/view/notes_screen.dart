@@ -17,7 +17,6 @@ class _NotesScreenState extends State<NotesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('drawer');
     return Scaffold(
         appBar: AppBar(
           leading: Builder(builder: (BuildContext context){
