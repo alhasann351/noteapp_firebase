@@ -4,4 +4,5 @@ class ImageIconAssets{
   static const String logoutIcon = 'assets/icons/log_out.png';
   static const String popupMenuIcon = 'assets/icons/popup_menu_icon.png';
   static const String addNotesIcon = 'assets/icons/add_notes.png';
+  static const String loginImage = 'assets/images/login.png';
 }

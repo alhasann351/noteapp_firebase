@@ -19,6 +19,11 @@ class Themes{
         iconColor: MaterialStatePropertyAll(AppColors.whiteColor),
       ),
     ),
+    inputDecorationTheme: const InputDecorationTheme(
+      hintStyle: TextStyle(
+        color: AppColors.whiteColor,
+      ),
+    ),
     scaffoldBackgroundColor: AppColors.primaryLightColor,
   );
 
@@ -37,6 +42,11 @@ class Themes{
     iconButtonTheme: const IconButtonThemeData(
       style: ButtonStyle(
         iconColor: MaterialStatePropertyAll(AppColors.whiteColor),
+      ),
+    ),
+    inputDecorationTheme: const InputDecorationTheme(
+      hintStyle: TextStyle(
+        color: AppColors.blackColor,
       ),
     ),
     scaffoldBackgroundColor: AppColors.primaryDarkColor,
