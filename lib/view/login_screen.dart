@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:noteapp_firebase/resources/assets/image_icon_assets.dart';
 import 'package:noteapp_firebase/resources/colors/app-colors.dart';
+import 'package:noteapp_firebase/resources/components/rounded_button.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
 import 'package:noteapp_firebase/resources/strings/app_stings.dart';
 
@@ -71,6 +72,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: const TextStyle(color: AppColors.blackColor),
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.asset(ImageIconAssets.emailIcon, width: 30,),
+                            ),
                             filled: true,
                             fillColor: Colors.white,
                             hintText: AppStrings.emailHintText,
@@ -91,6 +96,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           keyboardType: TextInputType.text,
                           obscureText: showPassword,
                           decoration: InputDecoration(
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.asset(ImageIconAssets.passwordIcon, width: 30,),
+                            ),
                             suffixIcon: GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -120,7 +129,80 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              Expanded(child: Text('data')),
+              const SizedBox(
+                height: 40,
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: RoundedButton(
+                        title: AppStrings.login,
+                        backgroundColor: AppColors.buttonColor,
+                        textStyle: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: AppFontStyle.amaranth,
+                          color: AppColors.whiteColor,
+                        ),
+                        onTap: () {},
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          AppStrings.forgotPass,
+                          style: TextStyle(
+                              fontSize: 17, fontFamily: AppFontStyle.amaranth),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    OutlinedButton.icon(
+                      onPressed: () {},
+                      icon: Image.asset(ImageIconAssets.phoneIcon, width: 30,),
+                      style: OutlinedButton.styleFrom(
+                          side: const BorderSide(
+                              width: 2, color: AppColors.commonColor)),
+                      label: const Text(
+                        AppStrings.loginPhoneNumber,
+                        style: TextStyle(
+                            fontSize: 18, fontFamily: AppFontStyle.amaranth),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          AppStrings.haveAccount,
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontFamily: AppFontStyle.amaranth,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            AppStrings.signup,
+                            style: TextStyle(
+                                fontSize: 17,
+                                fontFamily: AppFontStyle.amaranth),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

@@ -21,7 +21,7 @@ class Themes{
     ),
     inputDecorationTheme: const InputDecorationTheme(
       hintStyle: TextStyle(
-        color: AppColors.whiteColor,
+        color: AppColors.blackColor,
       ),
     ),
     scaffoldBackgroundColor: AppColors.primaryLightColor,

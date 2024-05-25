@@ -29,7 +29,7 @@ class RoundedButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        elevation: 10,
+        elevation: 6,
       ),
       child: loading ? const LoadingAnimation() : Text(title, style: textStyle,),
     );
