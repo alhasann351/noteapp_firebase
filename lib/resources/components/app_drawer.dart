@@ -45,9 +45,7 @@ class AppDrawer extends StatelessWidget {
                       itemBuilder: (context) => [
                         PopupMenuItem(
                           value: 1,
-                          onTap: (){
-
-                          },
+                          onTap: () {},
                           child: ListTile(
                             title: const Text(
                               'Edit Profile',
@@ -66,30 +64,29 @@ class AppDrawer extends StatelessWidget {
                           ),
                         ),
                         PopupMenuItem(
-                            value: 2,
-                            onTap: (){
-
-                            },
-                            child: ListTile(
-                              title: const Text(
-                                'Logout',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: AppFontStyle.amaranth,
-                                  color: AppColors.whiteColor,
-                                ),
-                              ),
-                              trailing: Image.asset(
-                                ImageIconAssets.logoutIcon,
-                                width: 26,
+                          value: 2,
+                          onTap: () {},
+                          child: ListTile(
+                            title: const Text(
+                              'Logout',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: AppFontStyle.amaranth,
                                 color: AppColors.whiteColor,
                               ),
-                            ))
+                            ),
+                            trailing: Image.asset(
+                              ImageIconAssets.logoutIcon,
+                              width: 26,
+                              color: AppColors.whiteColor,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

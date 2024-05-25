@@ -3,4 +3,5 @@ class RoutesName{
   static const String loginScreen = '/login_screen';
   static const String signupScreen = '/signup_screen';
   static const String notesScreen = '/notes_screen';
+  static const String addNotesScreen = '/add_notes_screen';
 }
