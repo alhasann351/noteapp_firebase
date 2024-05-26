@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:noteapp_firebase/resources/assets/image_icon_assets.dart';
 import 'package:noteapp_firebase/resources/colors/app-colors.dart';
 import 'package:noteapp_firebase/resources/components/rounded_button.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
+import 'package:noteapp_firebase/resources/routes/routes_name.dart';
 import 'package:noteapp_firebase/resources/strings/app_stings.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -190,14 +192,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        AppStrings.haveAccount,
+                        AppStrings.notHaveAccount,
                         style: TextStyle(
                           fontSize: 17,
                           fontFamily: AppFontStyle.amaranth,
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed(RoutesName.signupScreen);
+                        },
                         child: const Text(
                           AppStrings.signup,
                           style: TextStyle(
