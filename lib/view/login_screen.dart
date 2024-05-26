@@ -200,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.toNamed(RoutesName.signupScreen);
+                          Get.offNamed(RoutesName.signupScreen);
                         },
                         child: const Text(
                           AppStrings.signup,

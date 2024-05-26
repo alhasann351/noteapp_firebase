@@ -35,7 +35,9 @@ class _SignupScreenState extends State<SignupScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.offNamed(RoutesName.loginScreen);
+                        },
                         child: Image.asset(
                           ImageIconAssets.backIcon,
                           width: 40,
@@ -73,14 +75,20 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 50,
               ),
               Center(
-                child: Image.asset(
-                  ImageIconAssets.userImage,
+                child: SizedBox(
                   width: 180,
                   height: 180,
+                  child: CircleAvatar(
+                    child: Image.asset(
+                      ImageIconAssets.userImage,
+                      width: 180,
+                      height: 180,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(
-                height: 50,
+                height: 30,
               ),
               Center(
                 child: Form(
@@ -235,7 +243,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.toNamed(RoutesName.signupScreen);
+                          Get.offNamed(RoutesName.loginScreen);
                         },
                         child: const Text(
                           AppStrings.login,
