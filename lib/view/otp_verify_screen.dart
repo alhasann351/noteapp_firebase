@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../resources/assets/image_icon_assets.dart';
@@ -16,8 +17,11 @@ class OtpVerifyScreen extends StatefulWidget {
 }
 
 class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
+    print('otp f');
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -87,12 +91,233 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
               const SizedBox(
                 height: 50,
               ),
-              const Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+              Form(
+                key: _formKey,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-
+                    SizedBox(
+                      width: 40,
+                      height: 42,
+                      child: TextFormField(
+                        onChanged: (value){
+                          if(value.length == 1){
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                        textAlign: TextAlign.center,
+                        cursorColor: AppColors.blackColor,
+                        style:
+                            const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth, fontSize: 20,),
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          filled: true,
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 40,
+                      height: 42,
+                      child: TextFormField(
+                        onChanged: (value){
+                          if(value.length == 1){
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                        cursorColor: AppColors.blackColor,
+                        style:
+                        const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth, fontSize: 20,),
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          filled: true,
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 40,
+                      height: 42,
+                      child: TextFormField(
+                        onChanged: (value){
+                          if(value.length == 1){
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                        cursorColor: AppColors.blackColor,
+                        style:
+                        const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth, fontSize: 20,),
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          filled: true,
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 40,
+                      height: 42,
+                      child: TextFormField(
+                        onChanged: (value){
+                          if(value.length == 1){
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                        cursorColor: AppColors.blackColor,
+                        style:
+                        const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth, fontSize: 20,),
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          filled: true,
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 40,
+                      height: 42,
+                      child: TextFormField(
+                        onChanged: (value){
+                          if(value.length == 1){
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                        cursorColor: AppColors.blackColor,
+                        style:
+                        const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth, fontSize: 20,),
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          filled: true,
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 40,
+                      height: 42,
+                      child: TextFormField(
+                        onChanged: (value){
+                          if(value.length == 1){
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
+                        cursorColor: AppColors.blackColor,
+                        style:
+                        const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth, fontSize: 20,),
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          filled: true,
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -132,9 +357,7 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {
-
-                        },
+                        onPressed: () {},
                         child: const Text(
                           AppStrings.resendOtp,
                           style: TextStyle(
