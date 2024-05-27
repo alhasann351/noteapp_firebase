@@ -162,7 +162,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   Align(
                     alignment: Alignment.bottomRight,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.offNamed(RoutesName.forgotPasswordScreen);
+                      },
                       child: const Text(
                         AppStrings.forgotPass,
                         style: TextStyle(

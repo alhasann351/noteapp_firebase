@@ -5,6 +5,7 @@ import 'package:noteapp_firebase/view/login_screen.dart';
 import 'package:noteapp_firebase/view/notes_screen.dart';
 import 'package:noteapp_firebase/view/signup_screen.dart';
 import 'package:noteapp_firebase/view/splash_screen.dart';
+import 'package:noteapp_firebase/view/widgets/forgot_password_screen.dart';
 
 class AppRoutes {
   static appRoutes() => [
@@ -35,6 +36,12 @@ class AppRoutes {
         GetPage(
           name: RoutesName.addNotesScreen,
           page: () => const AddNotesScreen(),
+          transition: Transition.leftToRightWithFade,
+          transitionDuration: const Duration(milliseconds: 250),
+        ),
+        GetPage(
+          name: RoutesName.forgotPasswordScreen,
+          page: () => const ForgotPasswordScreen(),
           transition: Transition.leftToRightWithFade,
           transitionDuration: const Duration(milliseconds: 250),
         ),

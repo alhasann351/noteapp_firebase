@@ -12,4 +12,5 @@ class ImageIconAssets{
   static const String userImage = 'assets/images/use_photo.png';
   static const String passwordIcon = 'assets/icons/password_icon.png';
   static const String backIcon = 'assets/icons/back.png';
+  static const String forgotPasswordImage = 'assets/images/forgot_password.png';
 }
