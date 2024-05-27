@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
-
 import '../resources/assets/image_icon_assets.dart';
 import '../resources/colors/app-colors.dart';
 import '../resources/components/rounded_button.dart';
@@ -169,7 +168,9 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                         fontFamily: AppFontStyle.amaranth,
                         color: AppColors.whiteColor,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Get.offNamed(RoutesName.otpVerifyScreen);
+                      },
                     ),
                   ),
                   const SizedBox(

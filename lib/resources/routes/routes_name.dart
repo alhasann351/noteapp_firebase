@@ -6,4 +6,5 @@ class RoutesName{
   static const String addNotesScreen = '/add_notes_screen';
   static const String forgotPasswordScreen = '/forgot_password_screen';
   static const String loginPhoneNumberScreen = '/login_with_phone_number';
+  static const String otpVerifyScreen = '/otp_verify_screen';
 }

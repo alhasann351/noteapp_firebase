@@ -15,6 +15,11 @@ class AppStrings{
   static const String loginPhoneNumber = 'Login with phone number';
   static const String loginEmailAddress = 'Login with email address';
   static const String submit = 'Submit';
+  static const String verify = 'Verify';
   static const String loginPhoneTitle = 'Enter your phone number';
-  static const String loginPhoneSubtitle = 'Will send you the 6 digit verification code.';
+  static const String loginPhoneSubtitle = 'We Will send you the 6 digit verification code.';
+  static const String otpTitle = 'Verification code';
+  static const String otpSubtitle = 'We have sent the verification code to your phone number.';
+  static const String noReceivedOtp = "Don't receive the OTP?";
+  static const String resendOtp = 'RESEND OTP';
 }

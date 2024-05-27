@@ -4,6 +4,7 @@ import 'package:noteapp_firebase/view/add_notes_screen.dart';
 import 'package:noteapp_firebase/view/login_screen.dart';
 import 'package:noteapp_firebase/view/login_with_phone_number.dart';
 import 'package:noteapp_firebase/view/notes_screen.dart';
+import 'package:noteapp_firebase/view/otp_verify_screen.dart';
 import 'package:noteapp_firebase/view/signup_screen.dart';
 import 'package:noteapp_firebase/view/splash_screen.dart';
 import 'package:noteapp_firebase/view/forgot_password_screen.dart';
@@ -46,11 +47,17 @@ class AppRoutes {
           transition: Transition.leftToRightWithFade,
           transitionDuration: const Duration(milliseconds: 250),
         ),
-    GetPage(
-      name: RoutesName.loginPhoneNumberScreen,
-      page: () => const LoginWithPhoneNumber(),
-      transition: Transition.leftToRightWithFade,
-      transitionDuration: const Duration(milliseconds: 250),
-    ),
+        GetPage(
+          name: RoutesName.loginPhoneNumberScreen,
+          page: () => const LoginWithPhoneNumber(),
+          transition: Transition.leftToRightWithFade,
+          transitionDuration: const Duration(milliseconds: 250),
+        ),
+        GetPage(
+          name: RoutesName.otpVerifyScreen,
+          page: () => const OtpVerifyScreen(),
+          transition: Transition.leftToRightWithFade,
+          transitionDuration: const Duration(milliseconds: 250),
+        ),
       ];
 }
