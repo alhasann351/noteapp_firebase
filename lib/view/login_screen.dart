@@ -176,7 +176,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 40,
                   ),
                   OutlinedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.offNamed(RoutesName.loginPhoneNumberScreen);
+                    },
                     icon: Image.asset(ImageIconAssets.phoneIcon, width: 30,),
                     style: OutlinedButton.styleFrom(
                         side: const BorderSide(

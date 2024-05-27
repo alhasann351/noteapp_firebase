@@ -44,6 +44,7 @@ dependencies:
   cloud_firestore:
   loading_animation_widget: ^1.2.1
   auto_size_text:
+  intl_phone_field: ^3.2.0
 
 dev_dependencies:
   flutter_test:

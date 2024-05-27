@@ -13,5 +13,8 @@ class AppStrings{
   static const String haveAccount = 'Have an account?';
   static const String signup = 'Signup';
   static const String loginPhoneNumber = 'Login with phone number';
+  static const String loginEmailAddress = 'Login with email address';
   static const String submit = 'Submit';
+  static const String loginPhoneTitle = 'Enter your phone number';
+  static const String loginPhoneSubtitle = 'Will send you the 6 digit verification code.';
 }
