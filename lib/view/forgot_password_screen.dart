@@ -34,7 +34,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     children: [
                       InkWell(
                         onTap: () {
-                          Get.offNamed(RoutesName.loginScreen);
+                          Get.offAllNamed(RoutesName.loginScreen);
                         },
                         child: Image.asset(
                           ImageIconAssets.backIcon,

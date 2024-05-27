@@ -163,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.bottomRight,
                     child: TextButton(
                       onPressed: () {
-                        Get.offNamed(RoutesName.forgotPasswordScreen);
+                        Get.toNamed(RoutesName.forgotPasswordScreen);
                       },
                       child: const Text(
                         AppStrings.forgotPass,
@@ -177,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   OutlinedButton.icon(
                     onPressed: () {
-                      Get.offNamed(RoutesName.loginPhoneNumberScreen);
+                      Get.toNamed(RoutesName.loginPhoneNumberScreen);
                     },
                     icon: Image.asset(ImageIconAssets.phoneIcon, width: 30,),
                     style: OutlinedButton.styleFrom(
@@ -204,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.offNamed(RoutesName.signupScreen);
+                          Get.toNamed(RoutesName.signupScreen);
                         },
                         child: const Text(
                           AppStrings.signup,

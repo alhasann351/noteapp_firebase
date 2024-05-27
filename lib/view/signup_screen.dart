@@ -36,7 +36,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     children: [
                       InkWell(
                         onTap: () {
-                          Get.offNamed(RoutesName.loginScreen);
+                          Get.offAllNamed(RoutesName.loginScreen);
                         },
                         child: Image.asset(
                           ImageIconAssets.backIcon,
@@ -243,7 +243,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.offNamed(RoutesName.loginScreen);
+                          Get.offAllNamed(RoutesName.loginScreen);
                         },
                         child: const Text(
                           AppStrings.login,

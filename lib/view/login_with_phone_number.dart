@@ -37,7 +37,7 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                     children: [
                       InkWell(
                         onTap: () {
-                          Get.offNamed(RoutesName.loginScreen);
+                          Get.offAllNamed(RoutesName.loginScreen);
                         },
                         child: Image.asset(
                           ImageIconAssets.backIcon,
@@ -169,7 +169,7 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                         color: AppColors.whiteColor,
                       ),
                       onTap: () {
-                        Get.offNamed(RoutesName.otpVerifyScreen);
+                        Get.toNamed(RoutesName.otpVerifyScreen);
                       },
                     ),
                   ),

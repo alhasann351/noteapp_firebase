@@ -36,7 +36,7 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                     children: [
                       InkWell(
                         onTap: () {
-                          Get.offNamed(RoutesName.loginPhoneNumberScreen);
+                          Get.back();//RoutesName.loginPhoneNumberScreen);
                         },
                         child: Image.asset(
                           ImageIconAssets.backIcon,
