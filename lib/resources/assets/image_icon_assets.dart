@@ -15,4 +15,5 @@ class ImageIconAssets{
   static const String loginPhoneImage = 'assets/images/login_phone.png';
   static const String forgotPasswordImage = 'assets/images/forgot_password.png';
   static const String otpImage = 'assets/images/otp.png';
+  static const String onInternetImage = 'assets/images/no_internet.png';
 }

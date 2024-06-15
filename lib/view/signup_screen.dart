@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
 import '../resources/assets/image_icon_assets.dart';
 import '../resources/colors/app-colors.dart';
 import '../resources/components/rounded_button.dart';
@@ -125,6 +124,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        validator: (value){
+                          
+                        },
                       ),
                       const SizedBox(
                         height: 15,

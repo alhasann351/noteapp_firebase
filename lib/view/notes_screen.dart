@@ -6,6 +6,7 @@ import 'package:noteapp_firebase/resources/components/app_drawer.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
 import 'package:noteapp_firebase/resources/routes/app_routes.dart';
 import 'package:noteapp_firebase/resources/routes/routes_name.dart';
+import 'package:noteapp_firebase/view/widgets/no_internet_alert_dialog.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
 
 class NotesScreen extends StatefulWidget {
@@ -42,13 +43,16 @@ class _NotesScreenState extends State<NotesScreen> {
         ),
       ),
       drawer: AppDrawer(),
-      body: const SafeArea(
-        child: Text('data',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              fontFamily: AppFontStyle.amaranth,
-            )),
+      body: SafeArea(
+        child: ElevatedButton(
+            onPressed: () {
+              showDialog(
+                barrierDismissible: false,
+                  context: context,
+                  builder: (BuildContext context) =>
+                      const NoInternetAlertDialog());
+            },
+            child: const Text('Show')),
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -57,12 +61,14 @@ class _NotesScreenState extends State<NotesScreen> {
           backgroundColor: AppColors.commonColor,
           elevation: 10,
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12),),
+            borderRadius: BorderRadius.all(
+              Radius.circular(12),
+            ),
           ),
           child: Center(
               child: Image.asset(
             ImageIconAssets.addNotesIcon,
-                width: 30,
+            width: 30,
           ))),
     );
   }

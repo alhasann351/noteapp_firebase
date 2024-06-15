@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
 
 class AppColors{
   static const Color appBarColor = Color(0xFF6a7dff);
@@ -18,4 +20,6 @@ class AppColors{
   static const Color buttonColor = Color(0xFF6a7dff);
   static const Color darkInputBorderSideColor = Color(0xFF6a7dff);
   static const Color lightInputBorderSideColor = Color(0xFF0C359E);
+  static const Color lightSnackbarBackgroundColor = Color(0xFF6a7dff);
+  static const Color darkSnackbarBackgroundColor = Color(0xFF2a3167);
 }

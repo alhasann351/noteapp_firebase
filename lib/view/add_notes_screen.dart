@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../resources/fonts/app_font_style.dart';
 
 class AddNotesScreen extends StatefulWidget {

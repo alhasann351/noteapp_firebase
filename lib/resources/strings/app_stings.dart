@@ -22,4 +22,6 @@ class AppStrings{
   static const String otpSubtitle = 'We have sent the verification code to your phone number.';
   static const String noReceivedOtp = "Don't receive the OTP?";
   static const String resendOtp = 'RESEND OTP';
+  static const String noInternet = 'No internet connection';
+  static const String checkInternet = 'Please check your internet connection';
 }
