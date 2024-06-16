@@ -20,35 +20,33 @@ final ThemeController themeController = Get.put(ThemeController());
 class _NoInternetAlertDialogState extends State<NoInternetAlertDialog> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: AlertDialog(
-        icon: Image.asset(
-          ImageIconAssets.onInternetImage,
-          width: 80,
-          height: 80,
-          color: AppColors.whiteColor,
-        ),
-        title: const Text(
-          AppStrings.noInternet,
-          textAlign: TextAlign.center,
-        ),
-        titleTextStyle: const TextStyle(
-          fontSize: 25,
-          fontFamily: AppFontStyle.amaranth,
-          color: AppColors.whiteColor,
-        ),
-        content: const Text(
-          AppStrings.checkInternet,
-          textAlign: TextAlign.center,
-        ),
-        contentTextStyle: const TextStyle(
-            fontSize: 18,
-            fontFamily: AppFontStyle.amaranth,
-            color: AppColors.whiteColor),
-        backgroundColor: themeController.isDarkMode.value
-            ? AppColors.darkSnackbarBackgroundColor
-            : AppColors.lightSnackbarBackgroundColor,
+    return AlertDialog(
+      icon: Image.asset(
+        ImageIconAssets.onInternetImage,
+        width: 80,
+        height: 80,
+        color: AppColors.whiteColor,
       ),
+      title: const Text(
+        AppStrings.noInternet,
+        textAlign: TextAlign.center,
+      ),
+      titleTextStyle: const TextStyle(
+        fontSize: 25,
+        fontFamily: AppFontStyle.amaranth,
+        color: AppColors.whiteColor,
+      ),
+      content: const Text(
+        AppStrings.checkInternet,
+        textAlign: TextAlign.center,
+      ),
+      contentTextStyle: const TextStyle(
+          fontSize: 18,
+          fontFamily: AppFontStyle.amaranth,
+          color: AppColors.whiteColor),
+      backgroundColor: themeController.isDarkMode.value
+          ? AppColors.darkSnackbarBackgroundColor
+          : AppColors.lightSnackbarBackgroundColor,
     );
   }
 }

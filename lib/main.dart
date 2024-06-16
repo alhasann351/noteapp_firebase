@@ -4,6 +4,7 @@ import 'package:noteapp_firebase/resources/routes/app_routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:noteapp_firebase/resources/themes/themes.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
+import 'package:noteapp_firebase/view_models/services/connectivity_service.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -12,7 +13,14 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await initServices();
+
   runApp(MyApp());
+}
+
+Future<void> initServices() async{
+  Get.put(ConnectivityService());
 }
 
 class MyApp extends StatelessWidget {

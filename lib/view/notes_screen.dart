@@ -46,11 +46,7 @@ class _NotesScreenState extends State<NotesScreen> {
       body: SafeArea(
         child: ElevatedButton(
             onPressed: () {
-              showDialog(
-                barrierDismissible: false,
-                  context: context,
-                  builder: (BuildContext context) =>
-                      const NoInternetAlertDialog());
+              Get.dialog(barrierDismissible: false, NoInternetAlertDialog());
             },
             child: const Text('Show')),
       ),
