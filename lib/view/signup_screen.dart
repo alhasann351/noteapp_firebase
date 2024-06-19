@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:noteapp_firebase/view_models/controller/show_password_controller.dart';
 import '../resources/assets/image_icon_assets.dart';
 import '../resources/colors/app-colors.dart';
 import '../resources/components/rounded_button.dart';
@@ -17,7 +18,8 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
-  bool showPassword = true;
+  //bool showPassword = true;
+  final ShowPasswordController showPasswordController = Get.put(ShowPasswordController());
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +127,10 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         validator: (value){
-                          
+                          if(value!.isEmpty){
+                            return 'Enter name';
+                          }
+                          return null;
                         },
                       ),
                       const SizedBox(
@@ -159,15 +164,21 @@ class _SignupScreenState extends State<SignupScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return 'Enter email';
+                          }
+                          return null;
+                        },
                       ),
                       const SizedBox(
                         height: 15,
                       ),
-                      TextFormField(
+                      Obx(() => TextFormField(
                         cursorColor: AppColors.blackColor,
                         style: const TextStyle(color: AppColors.blackColor),
                         keyboardType: TextInputType.text,
-                        obscureText: showPassword,
+                        obscureText: showPasswordController.showPassword.value,
                         decoration: InputDecoration(
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -178,12 +189,13 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           suffixIcon: GestureDetector(
                             onTap: () {
-                              setState(() {
+                              showPasswordController.passwordShow();
+                              /*setState(() {
                                 showPassword = !showPassword;
-                              });
+                              });*/
                             },
                             child: Icon(
-                              showPassword
+                              showPasswordController.showPassword.value
                                   ? Icons.visibility_off_outlined
                                   : Icons.visibility_outlined,
                               color: AppColors.blackColor,
@@ -205,7 +217,13 @@ class _SignupScreenState extends State<SignupScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                      ),
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return 'Enter password';
+                          }
+                          return null;
+                        },
+                      ),),
                     ],
                   ),
                 ),
