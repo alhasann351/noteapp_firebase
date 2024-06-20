@@ -15,7 +15,8 @@ class AppColors{
   static const Color textColor = Color(0xFFdee0f9);
   static const Color whiteColor = Colors.white;
   static const Color blackColor = Colors.black;
-  static const Color popupButtonColor = Color(0xFF0C359E);
+  static const Color darkPopupButtonColor = Color(0xFF2a3167);
+  static const Color lightPopupButtonColor = Color(0xFF0C359E);
   static const Color drawerHeaderColor = Color(0xFF6a7dff);
   static const Color buttonColor = Color(0xFF6a7dff);
   static const Color darkInputBorderSideColor = Color(0xFF6a7dff);

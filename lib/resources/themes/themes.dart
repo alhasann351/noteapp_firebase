@@ -16,7 +16,7 @@ class Themes{
     ),
     iconButtonTheme: const IconButtonThemeData(
       style: ButtonStyle(
-        iconColor: MaterialStatePropertyAll(AppColors.whiteColor),
+        iconColor: WidgetStatePropertyAll(AppColors.whiteColor),
       ),
     ),
     inputDecorationTheme: const InputDecorationTheme(
@@ -41,7 +41,7 @@ class Themes{
     ),
     iconButtonTheme: const IconButtonThemeData(
       style: ButtonStyle(
-        iconColor: MaterialStatePropertyAll(AppColors.whiteColor),
+        iconColor: WidgetStatePropertyAll(AppColors.whiteColor),
       ),
     ),
     inputDecorationTheme: const InputDecorationTheme(

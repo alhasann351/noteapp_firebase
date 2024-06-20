@@ -5,12 +5,16 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:noteapp_firebase/resources/assets/image_icon_assets.dart';
 import 'package:noteapp_firebase/resources/colors/app-colors.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
+import 'package:noteapp_firebase/data/logout.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
+
+import '../themes/themes.dart';
 
 class AppDrawer extends StatelessWidget {
   AppDrawer({super.key});
 
   final ThemeController themeController = Get.put(ThemeController());
+  final Logout logout = Logout();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,7 @@ class AppDrawer extends StatelessWidget {
                       ),
                     ),
                     PopupMenuButton(
-                      color: AppColors.popupButtonColor,
+                      color: themeController.isDarkMode.value ? AppColors.darkPopupButtonColor : AppColors.lightPopupButtonColor,
                       icon: Image.asset(
                         ImageIconAssets.popupMenuIcon,
                         width: 30,
@@ -65,7 +69,10 @@ class AppDrawer extends StatelessWidget {
                         ),
                         PopupMenuItem(
                           value: 2,
-                          onTap: () {},
+                          onTap: () {
+                            logout.logOut();
+                            themeController.isDarkMode.value = false;
+                          },
                           child: ListTile(
                             title: const Text(
                               'Logout',
@@ -81,8 +88,7 @@ class AppDrawer extends StatelessWidget {
                               width: 26,
                               color: AppColors.whiteColor,
                             ),
-                          ),
-                        ),
+                          ),),
                       ],
                     ),
                   ],
