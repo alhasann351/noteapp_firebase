@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:noteapp_firebase/utils/app_util.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../resources/routes/routes_name.dart';
 
@@ -26,7 +27,12 @@ class LoginController extends GetxController {
     _auth.signInWithEmailAndPassword(
       email: emailController.value.text.toString(),
       password: passwordController.value.text.toString(),
-    ).then((value){
+    ).then((value) async {
+      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+      String email = emailController.value.text.toString();
+      String password = passwordController.value.text.toString();
+      sharedPreferences.setString('email', email);
+      sharedPreferences.setString('password', password);
       loadingAnimation.value = false;
       AppUtil().showToastMessage('Login successful');
       Get.offAllNamed(RoutesName.notesScreen);
