@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:noteapp_firebase/resources/assets/image_icon_assets.dart';
 import 'package:noteapp_firebase/resources/colors/app-colors.dart';
+import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
 import 'package:noteapp_firebase/resources/components/rounded_button.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
 import 'package:noteapp_firebase/resources/routes/routes_name.dart';
@@ -22,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   //bool showPassword = true;
   final ShowPasswordController showPasswordController = Get.put(ShowPasswordController());
+  final LoginController loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         cursorColor: AppColors.blackColor,
                         style: const TextStyle(color: AppColors.blackColor),
                         keyboardType: TextInputType.emailAddress,
+                        controller: loginController.emailController.value,
                         decoration: InputDecoration(
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -103,6 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: const TextStyle(color: AppColors.blackColor),
                         keyboardType: TextInputType.text,
                         obscureText: showPasswordController.showPassword.value,
+                        controller: loginController.passwordController.value,
                         decoration: InputDecoration(
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -151,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     width: double.infinity,
                     height: 50,
-                    child: RoundedButton(
+                    child: Obx(() => loginController.loadingAnimation.value ? LoadingAnimationSubmit() : RoundedButton(
                       title: AppStrings.login,
                       backgroundColor: AppColors.buttonColor,
                       textStyle: const TextStyle(
@@ -160,8 +164,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontFamily: AppFontStyle.amaranth,
                         color: AppColors.whiteColor,
                       ),
-                      onTap: () {},
-                    ),
+                      onTap: () {
+                        loginController.login();
+                      },
+                    ),),
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
