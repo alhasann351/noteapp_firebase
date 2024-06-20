@@ -22,4 +22,6 @@ class AppColors{
   static const Color lightInputBorderSideColor = Color(0xFF0C359E);
   static const Color lightSnackbarBackgroundColor = Color(0xFF6a7dff);
   static const Color darkSnackbarBackgroundColor = Color(0xFF2a3167);
+  static const Color lightLoadingAnimationColor = Color(0xFF2a3167);
+  static const Color darkLoadingAnimationColor = Color(0xFFdee0f9);
 }

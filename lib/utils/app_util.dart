@@ -15,4 +15,6 @@ class AppUtil{
       colorText: AppColors.whiteColor,
     );
   }
+
+
 }

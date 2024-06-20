@@ -1,7 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:noteapp_firebase/resources/components/loading_animation.dart';
+import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
 import 'package:noteapp_firebase/view_models/controller/show_password_controller.dart';
+import 'package:noteapp_firebase/view_models/controller/signup_controller.dart';
 import '../resources/assets/image_icon_assets.dart';
 import '../resources/colors/app-colors.dart';
 import '../resources/components/rounded_button.dart';
@@ -20,6 +25,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
   //bool showPassword = true;
   final ShowPasswordController showPasswordController = Get.put(ShowPasswordController());
+  final SignupController signupController = Get.put(SignupController());
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +108,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         cursorColor: AppColors.blackColor,
                         style: const TextStyle(color: AppColors.blackColor),
                         keyboardType: TextInputType.text,
+                        controller: signupController.nameController.value,
                         decoration: InputDecoration(
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -140,6 +147,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         cursorColor: AppColors.blackColor,
                         style: const TextStyle(color: AppColors.blackColor),
                         keyboardType: TextInputType.emailAddress,
+                        controller: signupController.emailController.value,
                         decoration: InputDecoration(
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -179,6 +187,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         style: const TextStyle(color: AppColors.blackColor),
                         keyboardType: TextInputType.text,
                         obscureText: showPasswordController.showPassword.value,
+                        controller: signupController.passwordController.value,
                         decoration: InputDecoration(
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -236,7 +245,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   SizedBox(
                     width: double.infinity,
                     height: 50,
-                    child: RoundedButton(
+                    child: Obx(() => signupController.loadingAnimation.value ? LoadingAnimationSubmit() : RoundedButton(
                       title: AppStrings.signup,
                       backgroundColor: AppColors.buttonColor,
                       textStyle: const TextStyle(
@@ -245,8 +254,12 @@ class _SignupScreenState extends State<SignupScreen> {
                         fontFamily: AppFontStyle.amaranth,
                         color: AppColors.whiteColor,
                       ),
-                      onTap: () {},
-                    ),
+                      onTap: () {
+                        if(_formKey.currentState!.validate()){
+                          signupController.signUp();
+                        }
+                      },
+                    ),),
                   ),
                   const SizedBox(
                     height: 40,
