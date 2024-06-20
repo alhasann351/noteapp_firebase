@@ -121,6 +121,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return 'Enter email';
+                          }
+                          return null;
+                        },
                       ),
                     ],
                   ),
@@ -143,7 +149,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         fontFamily: AppFontStyle.amaranth,
                         color: AppColors.whiteColor,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        if(_formKey.currentState!.validate()){
+
+                        }
+                      },
                     ),
                   ),
                 ],
