@@ -97,6 +97,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return 'Enter email';
+                          }
+                          return null;
+                        },
                       ),
                       const SizedBox(
                         height: 15,
@@ -142,6 +148,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return 'Enter password';
+                          }
+                          return null;
+                        },
                       ),),
                     ],
                   ),
@@ -165,7 +177,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: AppColors.whiteColor,
                       ),
                       onTap: () {
-                        loginController.login();
+                        if(_formKey.currentState!.validate()){
+                          loginController.login();
+                        }
                       },
                     ),),
                   ),
