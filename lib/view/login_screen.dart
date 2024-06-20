@@ -8,6 +8,8 @@ import 'package:noteapp_firebase/resources/components/rounded_button.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
 import 'package:noteapp_firebase/resources/routes/routes_name.dart';
 import 'package:noteapp_firebase/resources/strings/app_stings.dart';
+import 'package:noteapp_firebase/view_models/controller/login_controller.dart';
+import 'package:noteapp_firebase/view_models/controller/show_password_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,7 +20,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  bool showPassword = true;
+  //bool showPassword = true;
+  final ShowPasswordController showPasswordController = Get.put(ShowPasswordController());
 
   @override
   Widget build(BuildContext context) {
@@ -95,11 +98,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 15,
                       ),
-                      TextFormField(
+                      Obx(() => TextFormField(
                         cursorColor: AppColors.blackColor,
                         style: const TextStyle(color: AppColors.blackColor),
                         keyboardType: TextInputType.text,
-                        obscureText: showPassword,
+                        obscureText: showPasswordController.showPassword.value,
                         decoration: InputDecoration(
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -107,12 +110,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           suffixIcon: GestureDetector(
                             onTap: () {
-                              setState(() {
+                              /*setState(() {
                                 showPassword = !showPassword;
-                              });
+                              });*/
+                              showPasswordController.passwordShow();
                             },
                             child: Icon(
-                              showPassword
+                              showPasswordController.showPassword.value
                                   ? Icons.visibility_off_outlined
                                   : Icons.visibility_outlined,
                               color: AppColors.blackColor,
@@ -134,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                      ),
+                      ),),
                     ],
                   ),
                 ),
