@@ -3,7 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
+import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
+import 'package:noteapp_firebase/view_models/controller/auth_controller.dart';
 import '../resources/assets/image_icon_assets.dart';
 import '../resources/colors/app-colors.dart';
 import '../resources/components/rounded_button.dart';
@@ -19,7 +20,10 @@ class LoginWithPhoneNumber extends StatefulWidget {
 }
 
 class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
-  final ThemeController themeController = ThemeController();
+  //final LoginPhoneController loginPhoneController = Get.put(LoginPhoneController());
+  final AuthController authController = Get.put(AuthController());
+  final TextEditingController phoneNumberController = TextEditingController();
+  String completePhoneNumber = '';
 
   @override
   Widget build(BuildContext context) {
@@ -97,14 +101,18 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IntlPhoneField(
-                      onChanged: (value) {},
+                      onChanged: (phone) {
+                        completePhoneNumber = phone.completeNumber;
+                        //loginPhoneController.code!.value = value.countryCode;
+                      },
                       initialCountryCode: 'BD',
+                      controller: phoneNumberController,
                       pickerDialogStyle: PickerDialogStyle(
                         searchFieldInputDecoration: const InputDecoration(
-                          icon: Icon(Icons.search_outlined),
-                          iconColor: AppColors.blackColor,
-                          labelText: 'Search',
-                          labelStyle: TextStyle(color: AppColors.blackColor)
+                            icon: Icon(Icons.search_outlined),
+                            iconColor: AppColors.blackColor,
+                            labelText: 'Search',
+                            labelStyle: TextStyle(color: AppColors.blackColor)
                         ),
                         searchFieldCursorColor: AppColors.blackColor,
                         countryCodeStyle: const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth,),
@@ -159,7 +167,7 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                   SizedBox(
                     width: double.infinity,
                     height: 50,
-                    child: RoundedButton(
+                    child: Obx(() => authController.isLoading.value ? LoadingAnimationSubmit() : RoundedButton(
                       title: AppStrings.submit,
                       backgroundColor: AppColors.buttonColor,
                       textStyle: const TextStyle(
@@ -169,9 +177,15 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                         color: AppColors.whiteColor,
                       ),
                       onTap: () {
-                        Get.toNamed(RoutesName.otpVerifyScreen);
+                        if (completePhoneNumber.isEmpty || completePhoneNumber.length < 10) {
+                          Get.snackbar('Error', 'Please enter a valid phone number');
+                        } else {
+                          authController.signInWithPhoneNumber(completePhoneNumber);
+                        }
+                        //authController.signInWithPhoneNumber(phoneNumberController.text.trim());
+                        //loginPhoneController.loginPhoneNumber();
                       },
-                    ),
+                    ),),
                   ),
                   const SizedBox(
                     height: 40,

@@ -55,7 +55,7 @@ class AppRoutes {
         ),
         GetPage(
           name: RoutesName.otpVerifyScreen,
-          page: () => const OtpVerifyScreen(),
+          page: () => OtpVerifyScreen(),
           transition: Transition.leftToRightWithFade,
           transitionDuration: const Duration(milliseconds: 250),
         ),

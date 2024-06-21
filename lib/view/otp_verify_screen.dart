@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
+import 'package:noteapp_firebase/utils/app_util.dart';
 
 import '../resources/assets/image_icon_assets.dart';
 import '../resources/colors/app-colors.dart';
@@ -8,9 +12,12 @@ import '../resources/components/rounded_button.dart';
 import '../resources/fonts/app_font_style.dart';
 import '../resources/routes/routes_name.dart';
 import '../resources/strings/app_stings.dart';
+import '../view_models/controller/auth_controller.dart';
 
 class OtpVerifyScreen extends StatefulWidget {
-  const OtpVerifyScreen({super.key});
+  String? verificationId;
+
+  OtpVerifyScreen({super.key, this.verificationId});
 
   @override
   State<OtpVerifyScreen> createState() => _OtpVerifyScreenState();
@@ -18,10 +25,22 @@ class OtpVerifyScreen extends StatefulWidget {
 
 class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
   final _formKey = GlobalKey<FormState>();
+  final List<TextEditingController> otpControllers = List.generate(6, (index) => TextEditingController());
+  final AuthController authController = Get.find();
+  final TextEditingController otpController = TextEditingController();
+  /*String? _code1 = '';
+  String? _code2 = '';
+  String? _code3 = '';
+  String? _code4 = '';
+  String? _code5 = '';
+  String? _code6 = '';
+  String? _code = '';
+  final _auth = FirebaseAuth.instance;
+  bool loadingAnimation = false;
+  TextEditingController otpController = TextEditingController();*/
 
   @override
   Widget build(BuildContext context) {
-    print('otp f');
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -36,7 +55,7 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                     children: [
                       InkWell(
                         onTap: () {
-                          Get.back();//RoutesName.loginPhoneNumberScreen);
+                          Get.back(); //RoutesName.loginPhoneNumberScreen);
                         },
                         child: Image.asset(
                           ImageIconAssets.backIcon,
@@ -94,21 +113,57 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
               Form(
                 key: _formKey,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: List.generate(6, (index) {
+                    return SizedBox(
+                      width: 40,
+                      child: TextFormField(
+                        controller: otpControllers[index],
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                            borderSide: BorderSide.none,
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                        textAlign: TextAlign.center,
+                        keyboardType: TextInputType.number,
+                        maxLength: 1,
+                        style: TextStyle(fontSize: 24),
+                        onChanged: (value) {
+                          if (value.length == 1 && index < 5) {
+                            FocusScope.of(context).nextFocus();
+                          } else if (value.isEmpty && index > 0) {
+                            FocusScope.of(context).previousFocus();
+                          }
+                        },
+                      ),
+                    );
+                  }),
+                ),
+                /*child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
                       width: 40,
                       height: 42,
                       child: TextFormField(
-                        onChanged: (value){
-                          if(value.length == 1){
+                        controller: otpController,
+                        onChanged: (value) {
+                          if (value.length == 1) {
                             FocusScope.of(context).nextFocus();
+                            //_code1 = value.toString();
                           }
                         },
                         textAlign: TextAlign.center,
                         cursorColor: AppColors.blackColor,
-                        style:
-                            const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth, fontSize: 20,),
+                        style: const TextStyle(
+                          color: AppColors.blackColor,
+                          fontFamily: AppFontStyle.amaranth,
+                          fontSize: 20,
+                        ),
                         keyboardType: TextInputType.number,
                         inputFormatters: [
                           LengthLimitingTextInputFormatter(1),
@@ -137,51 +192,19 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                       width: 40,
                       height: 42,
                       child: TextFormField(
-                        onChanged: (value){
-                          if(value.length == 1){
+                        controller: otpController,
+                        onChanged: (value) {
+                          if (value.length == 1) {
                             FocusScope.of(context).nextFocus();
+                            _code2 = value.toString();
                           }
                         },
                         cursorColor: AppColors.blackColor,
-                        style:
-                        const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth, fontSize: 20,),
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(1),
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.zero,
-                          filled: true,
-                          fillColor: Colors.white,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              style: BorderStyle.none,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              style: BorderStyle.none,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                        style: const TextStyle(
+                          color: AppColors.blackColor,
+                          fontFamily: AppFontStyle.amaranth,
+                          fontSize: 20,
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 40,
-                      height: 42,
-                      child: TextFormField(
-                        onChanged: (value){
-                          if(value.length == 1){
-                            FocusScope.of(context).nextFocus();
-                          }
-                        },
-                        cursorColor: AppColors.blackColor,
-                        style:
-                        const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth, fontSize: 20,),
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
                         inputFormatters: [
@@ -211,14 +234,19 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                       width: 40,
                       height: 42,
                       child: TextFormField(
-                        onChanged: (value){
-                          if(value.length == 1){
+                        controller: otpController,
+                        onChanged: (value) {
+                          if (value.length == 1) {
                             FocusScope.of(context).nextFocus();
+                            _code3 = value.toString();
                           }
                         },
                         cursorColor: AppColors.blackColor,
-                        style:
-                        const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth, fontSize: 20,),
+                        style: const TextStyle(
+                          color: AppColors.blackColor,
+                          fontFamily: AppFontStyle.amaranth,
+                          fontSize: 20,
+                        ),
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
                         inputFormatters: [
@@ -248,14 +276,19 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                       width: 40,
                       height: 42,
                       child: TextFormField(
-                        onChanged: (value){
-                          if(value.length == 1){
+                        controller: otpController,
+                        onChanged: (value) {
+                          if (value.length == 1) {
                             FocusScope.of(context).nextFocus();
+                            _code4 = value.toString();
                           }
                         },
                         cursorColor: AppColors.blackColor,
-                        style:
-                        const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth, fontSize: 20,),
+                        style: const TextStyle(
+                          color: AppColors.blackColor,
+                          fontFamily: AppFontStyle.amaranth,
+                          fontSize: 20,
+                        ),
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
                         inputFormatters: [
@@ -285,14 +318,61 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                       width: 40,
                       height: 42,
                       child: TextFormField(
-                        onChanged: (value){
-                          if(value.length == 1){
+                        controller: otpController,
+                        onChanged: (value) {
+                          if (value.length == 1) {
                             FocusScope.of(context).nextFocus();
+                            _code5 = value.toString();
                           }
                         },
                         cursorColor: AppColors.blackColor,
-                        style:
-                        const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth, fontSize: 20,),
+                        style: const TextStyle(
+                          color: AppColors.blackColor,
+                          fontFamily: AppFontStyle.amaranth,
+                          fontSize: 20,
+                        ),
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          filled: true,
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 40,
+                      height: 42,
+                      child: TextFormField(
+                        controller: otpController,
+                        onChanged: (value) {
+                          if (value.length == 1) {
+                            FocusScope.of(context).nextFocus();
+                            _code6 = value.toString();
+                          }
+                        },
+                        cursorColor: AppColors.blackColor,
+                        style: const TextStyle(
+                          color: AppColors.blackColor,
+                          fontFamily: AppFontStyle.amaranth,
+                          fontSize: 20,
+                        ),
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
                         inputFormatters: [
@@ -319,7 +399,7 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                       ),
                     ),
                   ],
-                ),
+                ),*/
               ),
               const SizedBox(
                 height: 40,
@@ -329,7 +409,7 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                   SizedBox(
                     width: double.infinity,
                     height: 50,
-                    child: RoundedButton(
+                    child: Obx(() => authController.isLoading.value ? LoadingAnimationSubmit() : RoundedButton(
                       title: AppStrings.verify,
                       backgroundColor: AppColors.buttonColor,
                       textStyle: const TextStyle(
@@ -339,9 +419,36 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                         color: AppColors.whiteColor,
                       ),
                       onTap: () {
-                        Get.offNamed(RoutesName.notesScreen);
+                        /*setState(() {
+                          loadingAnimation = true;
+                        });
+
+                        final credential = PhoneAuthProvider.credential(
+                          verificationId: widget.verificationId!,
+                          smsCode: otpController.text.toString(),
+                        );
+
+                        try{
+                          await _auth.signInWithCredential(credential);
+
+                          Get.offNamed(RoutesName.notesScreen);
+
+                          setState(() {
+                            loadingAnimation = false;
+                          });
+
+                        }catch(e){
+                          setState(() {
+                            loadingAnimation = false;
+                          });
+
+                          AppUtil().showToastMessage(e.toString());
+                        }
+*/
+                        String otp = otpControllers.map((controller) => controller.text).join();
+                        authController.verifyOTP(otp);
                       },
-                    ),
+                    ),),
                   ),
                   const SizedBox(
                     height: 20,
