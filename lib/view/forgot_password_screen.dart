@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
+import 'package:noteapp_firebase/view_models/controller/forgot_password_controller.dart';
 
 import '../resources/assets/image_icon_assets.dart';
 import '../resources/colors/app-colors.dart';
@@ -17,6 +19,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
+  final ForgotPasswordController forgotPasswordController = Get.put(ForgotPasswordController());
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +100,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         cursorColor: AppColors.blackColor,
                         style: const TextStyle(color: AppColors.blackColor),
                         keyboardType: TextInputType.emailAddress,
+                        controller: forgotPasswordController.emailController.value,
                         decoration: InputDecoration(
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -140,7 +144,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   SizedBox(
                     width: double.infinity,
                     height: 50,
-                    child: RoundedButton(
+                    child: Obx(() => forgotPasswordController.loadingAnimation.value ? LoadingAnimationSubmit() : RoundedButton(
                       title: AppStrings.submit,
                       backgroundColor: AppColors.buttonColor,
                       textStyle: const TextStyle(
@@ -151,10 +155,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       ),
                       onTap: () {
                         if(_formKey.currentState!.validate()){
-
+                          forgotPasswordController.forgotPassword();
                         }
                       },
-                    ),
+                    ),),
                   ),
                 ],
               ),
