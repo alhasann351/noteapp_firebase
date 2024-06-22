@@ -11,6 +11,12 @@ class ForgotPasswordController extends GetxController {
   final emailController = TextEditingController().obs;
   RxBool loadingAnimation = false.obs;
 
+  @override
+  void dispose() {
+    emailController.value.dispose();
+    super.dispose();
+  }
+
   void forgotPassword() {
     loadingAnimation.value = true;
 

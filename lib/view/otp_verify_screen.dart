@@ -117,21 +117,45 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                   children: List.generate(6, (index) {
                     return SizedBox(
                       width: 40,
+                      height: 50,
                       child: TextFormField(
                         controller: otpControllers[index],
-                        decoration: InputDecoration(
+                        /*decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                          contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
+                        ),*/
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          filled: true,
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              style: BorderStyle.none,
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        style: const TextStyle(
+                          color: AppColors.blackColor,
+                          fontFamily: AppFontStyle.amaranth,
+                          fontSize: 20,
                         ),
                         textAlign: TextAlign.center,
                         keyboardType: TextInputType.number,
-                        maxLength: 1,
-                        style: TextStyle(fontSize: 24),
+                        cursorColor: AppColors.blackColor,
+                        //maxLength: 1,
+                        //style: const TextStyle(fontSize: 24),
                         onChanged: (value) {
                           if (value.length == 1 && index < 5) {
                             FocusScope.of(context).nextFocus();
