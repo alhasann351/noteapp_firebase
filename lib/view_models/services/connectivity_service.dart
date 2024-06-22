@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:noteapp_firebase/view/widgets/no_internet_alert_dialog.dart';
+import 'package:noteapp_firebase/resources/components/no_internet_alert_dialog.dart';
 
 class ConnectivityService extends GetxService{
   var isConnected = false.obs;

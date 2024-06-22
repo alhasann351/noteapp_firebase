@@ -5,7 +5,7 @@ import 'package:noteapp_firebase/resources/assets/image_icon_assets.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
 import 'package:noteapp_firebase/resources/strings/app_stings.dart';
 
-import '../../resources/colors/app-colors.dart';
+import '../colors/app-colors.dart';
 import '../../view_models/controller/theme_controller.dart';
 
 class NoInternetAlertDialog extends StatefulWidget {

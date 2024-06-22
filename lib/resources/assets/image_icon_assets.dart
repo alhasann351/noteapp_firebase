@@ -16,4 +16,5 @@ class ImageIconAssets{
   static const String forgotPasswordImage = 'assets/images/forgot_password.png';
   static const String otpImage = 'assets/images/otp.png';
   static const String onInternetImage = 'assets/images/no_internet.png';
+  static const String exitDialogImage = 'assets/images/exit.png';
 }
