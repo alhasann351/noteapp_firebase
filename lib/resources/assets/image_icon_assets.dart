@@ -17,4 +17,6 @@ class ImageIconAssets{
   static const String otpImage = 'assets/images/otp.png';
   static const String onInternetImage = 'assets/images/no_internet.png';
   static const String exitDialogImage = 'assets/images/exit.png';
+  static const String exitAppIcon = 'assets/icons/exit_app.png';
+  static const String noeExitIcon = 'assets/icons/no_exit_app.png';
 }

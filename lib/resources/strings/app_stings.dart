@@ -24,4 +24,5 @@ class AppStrings{
   static const String resendOtp = 'RESEND OTP';
   static const String noInternet = 'No internet connection';
   static const String checkInternet = 'Please check your internet connection';
+  static const String exitText = 'Do you want to exit this app?';
 }

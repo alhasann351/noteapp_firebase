@@ -6,7 +6,6 @@ import 'package:noteapp_firebase/resources/colors/app-colors.dart';
 import 'package:noteapp_firebase/resources/components/app_drawer.dart';
 import 'package:noteapp_firebase/resources/components/exit_dialog.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
-import 'package:noteapp_firebase/resources/routes/app_routes.dart';
 import 'package:noteapp_firebase/resources/routes/routes_name.dart';
 import 'package:noteapp_firebase/resources/components/no_internet_alert_dialog.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
@@ -29,7 +28,7 @@ class _NotesScreenState extends State<NotesScreen> {
         if(didPop){
           return ;
         }
-        showExitDialog(context);
+        exitDialog.showExitDialog(context);
       }),
 
       child: Scaffold(
@@ -80,25 +79,5 @@ class _NotesScreenState extends State<NotesScreen> {
       ),
     );
   }
-}
-
-Future<bool> showExitDialog(BuildContext context) async {
-  bool exit = false;
-  await Get.defaultDialog(
-    title: "Exit App",
-    middleText: "Do you really want to exit the app?",
-    textCancel: "No",
-    textConfirm: "Yes",
-    confirmTextColor: Colors.white,
-    onConfirm: () {
-      //exit = true;
-      SystemNavigator.pop();
-
-    },
-    onCancel: () {
-      exit = false;
-    },
-  );
-  return exit;
 }
 
