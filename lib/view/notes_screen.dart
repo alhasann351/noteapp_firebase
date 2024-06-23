@@ -24,7 +24,13 @@ class _NotesScreenState extends State<NotesScreen> {
   final ThemeController themeController = Get.put(ThemeController());
   ExitDialog exitDialog = ExitDialog();
 
-  final dynamic _fireStore = FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid).collection('notes').snapshots();
+  final dynamic _fireStore = FirebaseFirestore.instance
+      .collection('users')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .collection('notes')
+      .orderBy('id', descending: true)
+      .snapshots();
+
   //DocumentReference _reference = FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid);
 
   @override
@@ -68,23 +74,60 @@ class _NotesScreenState extends State<NotesScreen> {
                 stream: _fireStore,
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if(snapshot.connectionState == ConnectionState.waiting){
+                  if (snapshot.connectionState == ConnectionState.waiting) {
                     return LoadingAnimationSubmit();
                   }
-                  if(snapshot.hasError){
+                  if (snapshot.hasError) {
                     return AppUtil().showToastMessage('Error');
                   }
+                  if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                    return const Center(child: Text('No notes found'));
+                  }
                   return Expanded(
-                      child: ListView.builder(
-                          itemCount: snapshot.data!.docs.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              onTap: () {
-                              },
-                              title: Text(snapshot.data!.docs[index]['note-title'].toString()),
-                              subtitle: Text(snapshot.data!.docs[index]['note-content'].toString()),
-                            );
-                          }));
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GridView.builder(
+                        itemCount: snapshot.data!.docs.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 8.0,
+                          mainAxisSpacing: 8.0,
+                          mainAxisExtent: 200,
+                        ),
+                        itemBuilder: (context, index) {
+                          return Card(
+                            color: AppColors.cardBackgroundColor[
+                                index % AppColors.cardBackgroundColor.length],
+                            child: ListTile(
+                              onTap: () {},
+                              title: Text(snapshot
+                                  .data!.docs[index]['note-title']
+                                  .toString()),
+                              subtitle: Text(
+                                snapshot.data!.docs[index]['note-content']
+                                    .toString(),
+                                maxLines: 7,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    /*ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          onTap: () {},
+                          title: Text(snapshot.data!.docs[index]['note-title']
+                              .toString()),
+                          subtitle: Text(snapshot
+                              .data!.docs[index]['note-content']
+                              .toString()),
+                        );
+                      },
+                    ),*/
+                  );
                 },
               ),
             ],
@@ -103,9 +146,9 @@ class _NotesScreenState extends State<NotesScreen> {
             ),
             child: Center(
                 child: Image.asset(
-                  ImageIconAssets.addNotesIcon,
-                  width: 30,
-                ))),
+              ImageIconAssets.addNotesIcon,
+              width: 30,
+            ))),
       ),
     );
   }

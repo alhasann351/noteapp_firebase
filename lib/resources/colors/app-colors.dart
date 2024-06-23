@@ -31,4 +31,21 @@ class AppColors{
   static const Color darkToastMessageBackgroundColor = Color(0xFF2a3167);
   static const Color exitAppColor = Color(0xFFFFFF00);
   static const Color noExitAppColor = Colors.red;
+  static const Color noteContentColor = Colors.white;
+
+  static var cardBackgroundColor = [
+    const Color(0xFF0079FF),
+    const Color(0xFF00DFA2),
+    const Color(0xFFFF0060),
+    const Color(0xFF6C22A6),
+    const Color(0xFF070F2B),
+    const Color(0xFF3E3232),
+    const Color(0xFF6D2932),
+    const Color(0xFFB5C99A),
+    const Color(0xFF83C0C1),
+    const Color(0xFFFF8080),
+    const Color(0xFFFFA447),
+    const Color(0xFF637A9F),
+    const Color(0xFF83C0C1),
+  ];
 }
