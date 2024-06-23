@@ -53,12 +53,8 @@ class _NotesScreenState extends State<NotesScreen> {
           ),
         ),
         drawer: AppDrawer(),
-        body: SafeArea(
-          child: ElevatedButton(
-              onPressed: () {
-                Get.dialog(barrierDismissible: false, NoInternetAlertDialog());
-              },
-              child: const Text('Show')),
+        body: const SafeArea(
+          child: Text('All Notes'),
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () {

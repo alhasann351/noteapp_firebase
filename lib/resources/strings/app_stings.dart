@@ -25,4 +25,7 @@ class AppStrings{
   static const String noInternet = 'No internet connection';
   static const String checkInternet = 'Please check your internet connection';
   static const String exitText = 'Do you want to exit this app?';
+  static const String noteTitle = 'Note title';
+  static const String noteContent = 'Write note';
+  static const String noteSave = 'Save note';
 }
