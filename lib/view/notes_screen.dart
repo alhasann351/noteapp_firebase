@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -5,9 +7,10 @@ import 'package:noteapp_firebase/resources/assets/image_icon_assets.dart';
 import 'package:noteapp_firebase/resources/colors/app-colors.dart';
 import 'package:noteapp_firebase/resources/components/app_drawer.dart';
 import 'package:noteapp_firebase/resources/components/exit_dialog.dart';
+import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
 import 'package:noteapp_firebase/resources/routes/routes_name.dart';
-import 'package:noteapp_firebase/resources/components/no_internet_alert_dialog.dart';
+import 'package:noteapp_firebase/utils/app_util.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
 
 class NotesScreen extends StatefulWidget {
@@ -20,17 +23,20 @@ class NotesScreen extends StatefulWidget {
 class _NotesScreenState extends State<NotesScreen> {
   final ThemeController themeController = Get.put(ThemeController());
   ExitDialog exitDialog = ExitDialog();
+
+  final dynamic _fireStore = FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid).collection('notes').snapshots();
+  //DocumentReference _reference = FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid);
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: ((didPop){
-        if(didPop){
-          return ;
+      onPopInvoked: ((didPop) {
+        if (didPop) {
+          return;
         }
         exitDialog.showExitDialog(context);
       }),
-
       child: Scaffold(
         appBar: AppBar(
           leading: Builder(builder: (BuildContext context) {
@@ -53,8 +59,36 @@ class _NotesScreenState extends State<NotesScreen> {
           ),
         ),
         drawer: AppDrawer(),
-        body: const SafeArea(
-          child: Text('All Notes'),
+        body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              StreamBuilder<QuerySnapshot>(
+                stream: _fireStore,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if(snapshot.connectionState == ConnectionState.waiting){
+                    return LoadingAnimationSubmit();
+                  }
+                  if(snapshot.hasError){
+                    return AppUtil().showToastMessage('Error');
+                  }
+                  return Expanded(
+                      child: ListView.builder(
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              onTap: () {
+                              },
+                              title: Text(snapshot.data!.docs[index]['note-title'].toString()),
+                              subtitle: Text(snapshot.data!.docs[index]['note-content'].toString()),
+                            );
+                          }));
+                },
+              ),
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -69,11 +103,10 @@ class _NotesScreenState extends State<NotesScreen> {
             ),
             child: Center(
                 child: Image.asset(
-              ImageIconAssets.addNotesIcon,
-              width: 30,
-            ))),
+                  ImageIconAssets.addNotesIcon,
+                  width: 30,
+                ))),
       ),
     );
   }
 }
-
