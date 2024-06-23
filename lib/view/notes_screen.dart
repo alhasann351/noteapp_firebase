@@ -101,13 +101,32 @@ class _NotesScreenState extends State<NotesScreen> {
                                 index % AppColors.cardBackgroundColor.length],
                             child: ListTile(
                               onTap: () {},
-                              title: Text(snapshot
-                                  .data!.docs[index]['note-title']
-                                  .toString()),
-                              subtitle: Text(
-                                snapshot.data!.docs[index]['note-content']
+                              title: Text(
+                                snapshot.data!.docs[index]['note-title']
                                     .toString(),
-                                maxLines: 7,
+                                maxLines: 1,
+                                style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  color: AppColors.whiteColor,
+                                  fontFamily: AppFontStyle.amaranth,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              subtitle: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 4, bottom: 8),
+                                child: Text(
+                                  snapshot.data!.docs[index]['note-content']
+                                      .toString(),
+                                  maxLines: 6,
+                                  style: const TextStyle(
+                                    overflow: TextOverflow.ellipsis,
+                                    color: AppColors.whiteColor,
+                                    fontFamily: AppFontStyle.amaranth,
+                                    fontSize: 16,
+                                  ),
+                                ),
                               ),
                             ),
                           );
