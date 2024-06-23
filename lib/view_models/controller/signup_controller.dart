@@ -32,8 +32,8 @@ class SignupController extends GetxController {
       email: emailController.value.text.toString(),
       password: passwordController.value.text.toString(),
     ).then((value){
-      String _id = DateTime.now().millisecondsSinceEpoch.toString();
-      _fireStore.doc(_id).set({
+      //String _id = DateTime.now().millisecondsSinceEpoch.toString();
+      _fireStore.doc(FirebaseAuth.instance.currentUser!.uid).set({
         'name' : nameController.value.text.toString(),
         'email' : emailController.value.text.toString(),
         'password' : passwordController.value.text.toString(),

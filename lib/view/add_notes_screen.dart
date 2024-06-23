@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
 import 'package:noteapp_firebase/resources/components/rounded_button.dart';
+import 'package:noteapp_firebase/view_models/controller/add_note_controller.dart';
 import '../resources/assets/image_icon_assets.dart';
 import '../resources/colors/app-colors.dart';
 import '../resources/fonts/app_font_style.dart';
@@ -14,6 +17,7 @@ class AddNotesScreen extends StatefulWidget {
 
 class _AddNotesScreenState extends State<AddNotesScreen> {
   final _formKey = GlobalKey<FormState>();
+  final AddNoteController addNoteController = Get.put(AddNoteController());
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                     cursorColor: AppColors.blackColor,
                     style: const TextStyle(color: AppColors.blackColor),
                     keyboardType: TextInputType.text,
-                    //controller: loginController.emailController.value,
+                    controller: addNoteController.noteTitleController.value,
                     decoration: InputDecoration(
                       suffix: const Text('Note title'),
                       suffixStyle: const TextStyle(
@@ -87,7 +91,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                     cursorColor: AppColors.blackColor,
                     style: const TextStyle(color: AppColors.blackColor),
                     keyboardType: TextInputType.text,
-                    //controller: loginController.passwordController.value,
+                    controller: addNoteController.noteContentController.value,
                     decoration: InputDecoration(
                       suffix: const Text('Write note'),
                       suffixStyle: const TextStyle(
@@ -126,7 +130,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
             ),
             SizedBox(
               height: 50,
-              child: RoundedButton(
+              child: Obx(() => addNoteController.loadingAnimation.value ? LoadingAnimationSubmit() : RoundedButton(
                 title: AppStrings.noteSave,
                 backgroundColor: AppColors.buttonColor,
                 textStyle: const TextStyle(
@@ -136,8 +140,11 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                   color: AppColors.whiteColor,
                 ),
                 onTap: () {
+                  if(_formKey.currentState!.validate()){
+                    addNoteController.saveNote();
+                  }
                 },
-              ),
+              ),),
             ),
           ],
         ),
