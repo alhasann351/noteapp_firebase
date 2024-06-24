@@ -15,7 +15,7 @@ class AddNoteController extends GetxController{
 
     String _id = DateTime.now().millisecondsSinceEpoch.toString();
 
-    _firestore.collection('notes').add({
+    _firestore.collection('notes').doc(_id).set({
       'id': _id,
       'note-title': noteTitleController.value.text.toString(),
       'note-content': noteContentController.value.text.toString(),

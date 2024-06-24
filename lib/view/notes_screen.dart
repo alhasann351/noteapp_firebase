@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'package:noteapp_firebase/resources/colors/app-colors.dart';
 import 'package:noteapp_firebase/resources/components/app_drawer.dart';
 import 'package:noteapp_firebase/resources/components/exit_dialog.dart';
 import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
+import 'package:noteapp_firebase/resources/components/no_internet_alert_dialog.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
 import 'package:noteapp_firebase/resources/routes/routes_name.dart';
 import 'package:noteapp_firebase/utils/app_util.dart';
@@ -31,10 +33,14 @@ class _NotesScreenState extends State<NotesScreen> {
       .orderBy('id', descending: true)
       .snapshots();
 
-  //DocumentReference _reference = FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid);
+  CollectionReference _reference = FirebaseFirestore.instance
+      .collection('users')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .collection('notes');
 
   @override
   Widget build(BuildContext context) {
+    print('object');
     return PopScope(
       canPop: false,
       onPopInvoked: ((didPop) {
@@ -121,7 +127,8 @@ class _NotesScreenState extends State<NotesScreen> {
                                       padding: const EdgeInsets.only(
                                           top: 4, bottom: 8),
                                       child: Text(
-                                        snapshot.data!.docs[index]['note-content']
+                                        snapshot
+                                            .data!.docs[index]['note-content']
                                             .toString(),
                                         maxLines: 7,
                                         style: const TextStyle(
@@ -134,22 +141,40 @@ class _NotesScreenState extends State<NotesScreen> {
                                     ),
                                   ),
                                 ),
-                                const Expanded(
+                                Expanded(
                                   flex: 1,
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: 15),
+                                    padding: const EdgeInsets.only(top: 15),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
-                                        CircleAvatar(
+                                        const CircleAvatar(
                                           child: Icon(Icons.edit_note),
                                         ),
-                                        CircleAvatar(
-                                          child: Icon(Icons.delete_forever),
+                                        GestureDetector(
+                                          onTap: () {
+                                            _reference
+                                                .doc(snapshot
+                                                    .data!.docs[index]['id']
+                                                    .toString())
+                                                .delete()
+                                                .then((value) {
+                                              AppUtil().showToastMessage('Note deleted');
+                                            }).onError((error, stackTrace) {
+                                              AppUtil().showToastMessage(
+                                                  'Note not deleted');
+                                            });
+                                          },
+                                          child: const CircleAvatar(
+                                            child: Icon(Icons.delete_forever),
+                                          ),
                                         ),
-                                        CircleAvatar(
-                                          child: Icon(Icons.favorite_border_rounded),
+                                        const CircleAvatar(
+                                          child: Icon(
+                                              Icons.favorite_border_rounded),
                                         ),
                                       ],
                                     ),
