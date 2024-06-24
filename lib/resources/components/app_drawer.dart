@@ -6,6 +6,7 @@ import 'package:noteapp_firebase/resources/assets/image_icon_assets.dart';
 import 'package:noteapp_firebase/resources/colors/app-colors.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
 import 'package:noteapp_firebase/data/logout.dart';
+import 'package:noteapp_firebase/utils/app_util.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
 
 import '../themes/themes.dart';
@@ -22,89 +23,134 @@ class AppDrawer extends StatelessWidget {
       child: Drawer(
           child: ListView(
         children: [
-          DrawerHeader(
-            decoration: const BoxDecoration(
-              color: AppColors.drawerHeaderColor,
-            ),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'My Profile',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: AppFontStyle.amaranth,
-                        color: AppColors.whiteColor,
+          SizedBox(
+            height: 300,
+            child: DrawerHeader(
+              decoration: const BoxDecoration(
+                color: AppColors.drawerHeaderColor,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'My Profile',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: AppFontStyle.amaranth,
+                          color: AppColors.whiteColor,
+                        ),
                       ),
-                    ),
-                    PopupMenuButton(
-                      color: themeController.isDarkMode.value ? AppColors.darkPopupButtonColor : AppColors.lightPopupButtonColor,
-                      icon: Image.asset(
-                        ImageIconAssets.popupMenuIcon,
-                        width: 30,
-                      ),
-                      itemBuilder: (context) => [
-                        PopupMenuItem(
-                          value: 1,
-                          onTap: () {},
-                          child: ListTile(
-                            title: const Text(
-                              'Edit Profile',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: AppFontStyle.amaranth,
+                      PopupMenuButton(
+                        color: themeController.isDarkMode.value
+                            ? AppColors.darkPopupButtonColor
+                            : AppColors.lightPopupButtonColor,
+                        icon: Image.asset(
+                          ImageIconAssets.popupMenuIcon,
+                          width: 30,
+                        ),
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            value: 1,
+                            onTap: () {},
+                            child: ListTile(
+                              title: const Text(
+                                'Edit Profile',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: AppFontStyle.amaranth,
+                                  color: AppColors.whiteColor,
+                                ),
+                              ),
+                              trailing: Image.asset(
+                                ImageIconAssets.editIcon,
+                                width: 26,
                                 color: AppColors.whiteColor,
                               ),
-                            ),
-                            trailing: Image.asset(
-                              ImageIconAssets.editIcon,
-                              width: 26,
-                              color: AppColors.whiteColor,
                             ),
                           ),
-                        ),
-                        PopupMenuItem(
-                          value: 2,
-                          onTap: () {
-                            logout.logOut();
-                            themeController.isDarkMode.value = false;
-                          },
-                          child: ListTile(
-                            title: const Text(
-                              'Logout',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: AppFontStyle.amaranth,
+                          PopupMenuItem(
+                            value: 2,
+                            onTap: () {
+                              logout.logOut();
+                              themeController.isDarkMode.value = false;
+                            },
+                            child: ListTile(
+                              title: const Text(
+                                'Logout',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: AppFontStyle.amaranth,
+                                  color: AppColors.whiteColor,
+                                ),
+                              ),
+                              trailing: Image.asset(
+                                ImageIconAssets.logoutIcon,
+                                width: 26,
                                 color: AppColors.whiteColor,
                               ),
                             ),
-                            trailing: Image.asset(
-                              ImageIconAssets.logoutIcon,
-                              width: 26,
-                              color: AppColors.whiteColor,
-                            ),
-                          ),),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           Column(
             children: [
-              Obx(() {
-                return Switch(
-                    value: themeController.isDarkMode.value,
-                    onChanged: (value) {
-                      themeController.switchTheme();
-                    });
-              }),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Dark Mode',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: AppFontStyle.amaranth,
+                      ),
+                    ),
+                    Obx(() {
+                      return Switch(
+                          value: themeController.isDarkMode.value,
+                          onChanged: (value) {
+                            themeController.switchTheme();
+                          });
+                    }),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: GestureDetector(
+                  onTap: (){
+                    AppUtil().showToastMessage('Share app click');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Share App',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: AppFontStyle.amaranth,
+                        ),
+                      ),
+                      Image.asset(ImageIconAssets.shareIcon, width: 45, height: 45,),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ],
