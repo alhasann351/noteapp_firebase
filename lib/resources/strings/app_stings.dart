@@ -27,5 +27,8 @@ class AppStrings{
   static const String exitText = 'Do you want to exit this app?';
   static const String noteTitle = 'Note title';
   static const String noteContent = 'Write note';
+  static const String updateNoteContent = 'Write update note';
+  static const String updateNoteTitle = 'Update note title';
   static const String noteSave = 'Save note';
+  static const String noteUpdate = 'Update note';
 }

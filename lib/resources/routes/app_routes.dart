@@ -8,6 +8,7 @@ import 'package:noteapp_firebase/view/otp_verify_screen.dart';
 import 'package:noteapp_firebase/view/signup_screen.dart';
 import 'package:noteapp_firebase/view/splash_screen.dart';
 import 'package:noteapp_firebase/view/forgot_password_screen.dart';
+import 'package:noteapp_firebase/view/update_notes_screen.dart';
 
 class AppRoutes {
   static appRoutes() => [
@@ -56,6 +57,12 @@ class AppRoutes {
         GetPage(
           name: RoutesName.otpVerifyScreen,
           page: () => OtpVerifyScreen(),
+          transition: Transition.leftToRightWithFade,
+          transitionDuration: const Duration(milliseconds: 250),
+        ),
+        GetPage(
+          name: RoutesName.updateNotesScreen,
+          page: () => const UpdateNotesScreen(),
           transition: Transition.leftToRightWithFade,
           transitionDuration: const Duration(milliseconds: 250),
         ),

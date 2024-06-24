@@ -151,8 +151,13 @@ class _NotesScreenState extends State<NotesScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        const CircleAvatar(
-                                          child: Icon(Icons.edit_note),
+                                        GestureDetector(
+                                          onTap: (){
+                                            Get.toNamed(RoutesName.updateNotesScreen);
+                                          },
+                                          child: const CircleAvatar(
+                                            child: Icon(Icons.edit_note),
+                                          ),
                                         ),
                                         GestureDetector(
                                           onTap: () {
