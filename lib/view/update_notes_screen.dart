@@ -1,4 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
+import 'package:noteapp_firebase/utils/app_util.dart';
+import 'package:noteapp_firebase/view_models/controller/update_notes_controller.dart';
 
 import '../resources/colors/app-colors.dart';
 import '../resources/components/rounded_button.dart';
@@ -14,6 +20,14 @@ class UpdateNotesScreen extends StatefulWidget {
 
 class _UpdateNotesScreenState extends State<UpdateNotesScreen> {
   final _formKey = GlobalKey<FormState>();
+  final UpdateNotesController updateNotesController = Get.put(UpdateNotesController());
+  final TextEditingController updateNoteTitleController = TextEditingController();
+  final TextEditingController updateNoteContentController = TextEditingController();
+
+  final CollectionReference _reference = FirebaseFirestore.instance
+      .collection('users')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .collection('notes');
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +61,8 @@ class _UpdateNotesScreenState extends State<UpdateNotesScreen> {
                     cursorColor: AppColors.blackColor,
                     style: const TextStyle(color: AppColors.blackColor),
                     keyboardType: TextInputType.text,
+                    controller: updateNoteTitleController..text =
+                    Get.arguments['note-title'].toString(),
                     decoration: InputDecoration(
                       suffix: const Text('Note title'),
                       suffixStyle: const TextStyle(
@@ -86,6 +102,8 @@ class _UpdateNotesScreenState extends State<UpdateNotesScreen> {
                     cursorColor: AppColors.blackColor,
                     style: const TextStyle(color: AppColors.blackColor),
                     keyboardType: TextInputType.text,
+                    controller: updateNoteContentController..text =
+                    Get.arguments['note-content'].toString(),
                     decoration: InputDecoration(
                       suffix: const Text('Write note'),
                       suffixStyle: const TextStyle(
@@ -124,7 +142,7 @@ class _UpdateNotesScreenState extends State<UpdateNotesScreen> {
             ),
             SizedBox(
               height: 50,
-              child: RoundedButton(
+              child: Obx(() => updateNotesController.loadingAnimation.value ? LoadingAnimationSubmit() : RoundedButton(
                 title: AppStrings.noteUpdate,
                 backgroundColor: AppColors.buttonColor,
                 textStyle: const TextStyle(
@@ -134,9 +152,22 @@ class _UpdateNotesScreenState extends State<UpdateNotesScreen> {
                   color: AppColors.whiteColor,
                 ),
                 onTap: () {
-
+                  if(_formKey.currentState!.validate()){
+                    updateNotesController.loadingAnimation.value = true;
+                    _reference.doc(Get.arguments['note-id'].toString()).update(
+                        {
+                          'note-title': updateNoteTitleController.text.toString(),
+                          'note-content': updateNoteContentController.text.toString(),
+                        }).then((value){
+                      updateNotesController.loadingAnimation.value = false;
+                      AppUtil().showToastMessage('Note update');
+                    }).onError((error, stackTrace){
+                      updateNotesController.loadingAnimation.value = false;
+                      AppUtil().showToastMessage('Note not update');
+                    });
+                  }
                 },
-              ),),
+              ),),),
           ],
         ),
       ),

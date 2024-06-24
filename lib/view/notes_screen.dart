@@ -9,7 +9,6 @@ import 'package:noteapp_firebase/resources/colors/app-colors.dart';
 import 'package:noteapp_firebase/resources/components/app_drawer.dart';
 import 'package:noteapp_firebase/resources/components/exit_dialog.dart';
 import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
-import 'package:noteapp_firebase/resources/components/no_internet_alert_dialog.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
 import 'package:noteapp_firebase/resources/routes/routes_name.dart';
 import 'package:noteapp_firebase/utils/app_util.dart';
@@ -153,7 +152,13 @@ class _NotesScreenState extends State<NotesScreen> {
                                       children: [
                                         GestureDetector(
                                           onTap: (){
-                                            Get.toNamed(RoutesName.updateNotesScreen);
+                                            Get.toNamed(RoutesName.updateNotesScreen, arguments: {
+                                              'note-id': snapshot.data!.docs[index]['id'].toString(),
+                                              'note-title': snapshot.data!.docs[index]['note-title'].toString(),
+                                              'note-content': snapshot
+                                                .data!.docs[index]['note-content']
+                                                .toString(),
+                                            });
                                           },
                                           child: const CircleAvatar(
                                             child: Icon(Icons.edit_note),
