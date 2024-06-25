@@ -25,4 +25,5 @@ class ImageIconAssets{
   static const String gridViewIcon = 'assets/icons/grid_view.png';
   static const String moreAppsIcon = 'assets/icons/more.png';
   static const String rateAppIcon = 'assets/icons/rate.png';
+  static const String privacyIcon = 'assets/icons/privacy-policy.png';
 }

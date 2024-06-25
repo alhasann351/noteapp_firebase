@@ -219,6 +219,29 @@ class AppDrawer extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: GestureDetector(
+                  onTap: (){
+                    AppUtil().showToastMessage('Privacy click');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Privacy',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: AppFontStyle.amaranth,
+                        ),
+                      ),
+                      Image.asset(ImageIconAssets.privacyIcon, width: 40, height: 40, color: themeController.isDarkMode.value ? AppColors.drawerItemsIconColor : AppColors.commonColor,),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ],
