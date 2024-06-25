@@ -19,6 +19,7 @@ class AddNoteController extends GetxController{
       'id': _id,
       'note-title': noteTitleController.value.text.toString(),
       'note-content': noteContentController.value.text.toString(),
+      'favorite': 'false',
       //'timestamp': FieldValue.serverTimestamp(),
     }).then((value){
       loadingAnimation.value = false;

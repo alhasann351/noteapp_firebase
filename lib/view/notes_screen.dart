@@ -32,10 +32,12 @@ class _NotesScreenState extends State<NotesScreen> {
       .orderBy('id', descending: true)
       .snapshots();
 
-  CollectionReference _reference = FirebaseFirestore.instance
+  final CollectionReference _reference = FirebaseFirestore.instance
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser!.uid)
       .collection('notes');
+
+  bool flag = true;
 
   @override
   Widget build(BuildContext context) {
@@ -182,10 +184,33 @@ class _NotesScreenState extends State<NotesScreen> {
                                             child: Icon(Icons.delete_forever),
                                           ),
                                         ),
-                                        const CircleAvatar(
-                                          child: Icon(
-                                              Icons.favorite_border_rounded),
-                                        ),
+                                        GestureDetector(
+                                            onTap: (){
+                                              if(flag){
+                                                _reference.doc(snapshot.data!.docs[index]['id'].toString()).update({
+                                                  'favorite': 'true',
+                                                }).then((value){
+                                                  AppUtil().showToastMessage('Note added in favorite');
+                                                }).onError((error, stackTrace){
+                                                  AppUtil().showToastMessage('Note not added in favorite');
+                                                });
+                                                flag = false;
+                                              }else{
+                                                _reference.doc(snapshot.data!.docs[index]['id'].toString()).update({
+                                                  'favorite': 'false',
+                                                }).then((value){
+                                                  AppUtil().showToastMessage('Note remove in favorite');
+                                                }).onError((error, stackTrace){
+                                                  AppUtil().showToastMessage('Note not remove in favorite');
+                                                });
+                                                flag = true;
+                                              }
+                                            },
+                                            child: CircleAvatar(
+                                              child: snapshot.data!.docs[index]['favorite']=='true'.toString() ?  const Icon(
+                                                Icons.favorite_rounded, color: Colors.red,) : const Icon(
+                                                Icons.favorite_border_rounded, color: Colors.white,),
+                                            ),),
                                       ],
                                     ),
                                   ),
