@@ -31,4 +31,7 @@ class AppStrings{
   static const String updateNoteTitle = 'Update note title';
   static const String noteSave = 'Save note';
   static const String noteUpdate = 'Update note';
+  static const String listView = 'List view';
+  static const String gridView = 'Grid view';
+  static const String favoriteNotes = 'Favorite';
 }

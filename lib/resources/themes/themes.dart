@@ -11,6 +11,9 @@ class Themes{
         color: AppColors.whiteColor,
       ),
     ),
+    popupMenuTheme: const PopupMenuThemeData(
+    color: AppColors.commonColor,
+    ),
     drawerTheme: const DrawerThemeData(
       backgroundColor: AppColors.primaryLightColor,
     ),
@@ -35,6 +38,9 @@ class Themes{
       titleTextStyle: TextStyle(
         color: AppColors.whiteColor,
       ),
+    ),
+    popupMenuTheme: const PopupMenuThemeData(
+        color: AppColors.darkPopupButtonColor,
     ),
     drawerTheme: const DrawerThemeData(
       backgroundColor: AppColors.primaryDarkColor,

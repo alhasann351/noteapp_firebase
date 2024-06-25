@@ -20,4 +20,7 @@ class ImageIconAssets{
   static const String exitAppIcon = 'assets/icons/exit_app.png';
   static const String noeExitIcon = 'assets/icons/no_exit_app.png';
   static const String shareIcon = 'assets/icons/share.png';
+  static const String favoriteIcon = 'assets/icons/favourite.png';
+  static const String listViewIcon = 'assets/icons/list_view.png';
+  static const String gridViewIcon = 'assets/icons/grid_view.png';
 }
