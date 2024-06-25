@@ -145,7 +145,7 @@ class AppDrawer extends StatelessWidget {
                           fontFamily: AppFontStyle.amaranth,
                         ),
                       ),
-                      Image.asset(ImageIconAssets.favoriteIcon, width: 45, height: 45, color: themeController.isDarkMode.value ? AppColors.drawerItemsIconColor : AppColors.commonColor,),
+                      Image.asset(ImageIconAssets.favoriteIcon, width: 40, height: 40, color: themeController.isDarkMode.value ? AppColors.drawerItemsIconColor : AppColors.commonColor,),
                     ],
                   ),
                 ),
@@ -168,7 +168,7 @@ class AppDrawer extends StatelessWidget {
                           fontFamily: AppFontStyle.amaranth,
                         ),
                       ),
-                      Image.asset(ImageIconAssets.shareIcon, width: 45, height: 45, color: themeController.isDarkMode.value ? AppColors.drawerItemsIconColor : AppColors.commonColor,),
+                      Image.asset(ImageIconAssets.shareIcon, width: 40, height: 40, color: themeController.isDarkMode.value ? AppColors.drawerItemsIconColor : AppColors.commonColor,),
                     ],
                   ),
                 ),
@@ -191,7 +191,30 @@ class AppDrawer extends StatelessWidget {
                           fontFamily: AppFontStyle.amaranth,
                         ),
                       ),
-                      Image.asset(ImageIconAssets.moreAppsIcon, width: 45, height: 45, color: themeController.isDarkMode.value ? AppColors.drawerItemsIconColor : AppColors.commonColor,),
+                      Image.asset(ImageIconAssets.moreAppsIcon, width: 40, height: 40, color: themeController.isDarkMode.value ? AppColors.drawerItemsIconColor : AppColors.commonColor,),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: GestureDetector(
+                  onTap: (){
+                    AppUtil().showToastMessage('Rate app click');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Rate App',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: AppFontStyle.amaranth,
+                        ),
+                      ),
+                      Image.asset(ImageIconAssets.rateAppIcon, width: 40, height: 40, color: themeController.isDarkMode.value ? AppColors.drawerItemsIconColor : AppColors.commonColor,),
                     ],
                   ),
                 ),

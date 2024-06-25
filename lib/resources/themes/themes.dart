@@ -5,6 +5,9 @@ class Themes{
   final ThemeData lightTheme = ThemeData(
     //primaryColor: AppColors.primaryLightColor,
     brightness: Brightness.light,
+    iconTheme: const IconThemeData(
+      color: AppColors.whiteColor,
+    ),
     appBarTheme: const AppBarTheme(
       color: AppColors.appBarColor,
       titleTextStyle: TextStyle(
@@ -32,6 +35,9 @@ class Themes{
 
   final ThemeData darkTheme = ThemeData(
     //primaryColor: AppColors.primaryDarkColor,
+    iconTheme: const IconThemeData(
+      color: AppColors.blackColor,
+    ),
     brightness: Brightness.dark,
     appBarTheme: const AppBarTheme(
       color: AppColors.appBarColor,

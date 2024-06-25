@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:noteapp_firebase/resources/components/no_internet_alert_dialog.dart';
 
 import '../../resources/colors/app-colors.dart';
 import '../../resources/components/loading_animation_submit.dart';
@@ -169,7 +170,7 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
                                 child: CircleAvatar(
                                   child: snapshot.data!.docs[index]['favorite']=='true'.toString() ?  const Icon(
                                     Icons.favorite_rounded, color: Colors.red,) : const Icon(
-                                    Icons.favorite_border_rounded, color: Colors.white,),
+                                    Icons.favorite_border_rounded,),
                                 ),),
                             ],
                           ),

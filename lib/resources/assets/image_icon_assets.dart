@@ -24,4 +24,5 @@ class ImageIconAssets{
   static const String listViewIcon = 'assets/icons/list_view.png';
   static const String gridViewIcon = 'assets/icons/grid_view.png';
   static const String moreAppsIcon = 'assets/icons/more.png';
+  static const String rateAppIcon = 'assets/icons/rate.png';
 }
