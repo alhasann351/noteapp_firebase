@@ -32,6 +32,7 @@ class AppColors{
   static const Color exitAppColor = Color(0xFFFFFF00);
   static const Color noExitAppColor = Colors.red;
   static const Color noteContentColor = Colors.white;
+  static const Color drawerItemsIconColor = Color(0xFFE49BFF);
 
   static var cardBackgroundColor = [
     const Color(0xFF0079FF),
