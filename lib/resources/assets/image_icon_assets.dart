@@ -23,4 +23,5 @@ class ImageIconAssets{
   static const String favoriteIcon = 'assets/icons/favourite.png';
   static const String listViewIcon = 'assets/icons/list_view.png';
   static const String gridViewIcon = 'assets/icons/grid_view.png';
+  static const String moreAppsIcon = 'assets/icons/more.png';
 }

@@ -20,8 +20,8 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Obx(() => Drawer(
-          child: ListView(
+      child: Drawer(
+          child: Obx(() => ListView(
         children: [
           SizedBox(
             height: 300,
@@ -133,30 +133,6 @@ class AppDrawer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: GestureDetector(
                   onTap: (){
-                    AppUtil().showToastMessage('Share app click');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Share App',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: AppFontStyle.amaranth,
-                        ),
-                      ),
-                      Image.asset(ImageIconAssets.shareIcon, width: 45, height: 45,),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: GestureDetector(
-                  onTap: (){
-                    AppUtil().showToastMessage('Share app click');
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -174,10 +150,56 @@ class AppDrawer extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: GestureDetector(
+                  onTap: (){
+                    AppUtil().showToastMessage('Share app click');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Share App',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: AppFontStyle.amaranth,
+                        ),
+                      ),
+                      Image.asset(ImageIconAssets.shareIcon, width: 45, height: 45, color: themeController.isDarkMode.value ? AppColors.drawerItemsIconColor : AppColors.commonColor,),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: GestureDetector(
+                  onTap: (){
+                    AppUtil().showToastMessage('More apps click');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'More Apps',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: AppFontStyle.amaranth,
+                        ),
+                      ),
+                      Image.asset(ImageIconAssets.moreAppsIcon, width: 45, height: 45, color: themeController.isDarkMode.value ? AppColors.drawerItemsIconColor : AppColors.commonColor,),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ],
-      )),
+      ),),
     ));
   }
 }
