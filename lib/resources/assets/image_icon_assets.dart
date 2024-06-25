@@ -26,4 +26,5 @@ class ImageIconAssets{
   static const String moreAppsIcon = 'assets/icons/more.png';
   static const String rateAppIcon = 'assets/icons/rate.png';
   static const String privacyIcon = 'assets/icons/privacy-policy.png';
+  static const String termsIcon = 'assets/icons/terms.png';
 }

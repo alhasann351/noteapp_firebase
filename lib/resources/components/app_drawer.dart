@@ -242,6 +242,29 @@ class AppDrawer extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: GestureDetector(
+                  onTap: (){
+                    AppUtil().showToastMessage('Terms & Conditions click');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Terms & Conditions',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: AppFontStyle.amaranth,
+                        ),
+                      ),
+                      Image.asset(ImageIconAssets.termsIcon, width: 40, height: 40, color: themeController.isDarkMode.value ? AppColors.drawerItemsIconColor : AppColors.commonColor,),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ],
