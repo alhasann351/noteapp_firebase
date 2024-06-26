@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:noteapp_firebase/resources/routes/routes_name.dart';
 import 'package:noteapp_firebase/view/add_notes_screen.dart';
+import 'package:noteapp_firebase/view/favorite_notes_screen.dart';
 import 'package:noteapp_firebase/view/login_screen.dart';
 import 'package:noteapp_firebase/view/login_with_phone_number.dart';
 import 'package:noteapp_firebase/view/notes_screen.dart';
@@ -63,6 +64,12 @@ class AppRoutes {
         GetPage(
           name: RoutesName.updateNotesScreen,
           page: () => const UpdateNotesScreen(),
+          transition: Transition.leftToRightWithFade,
+          transitionDuration: const Duration(milliseconds: 250),
+        ),
+        GetPage(
+          name: RoutesName.favoriteNotesScreen,
+          page: () => const FavoriteNotesScreen(),
           transition: Transition.leftToRightWithFade,
           transitionDuration: const Duration(milliseconds: 250),
         ),

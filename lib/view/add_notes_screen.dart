@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
 import 'package:noteapp_firebase/resources/components/rounded_button.dart';
 import 'package:noteapp_firebase/view_models/controller/add_note_controller.dart';
-import '../resources/assets/image_icon_assets.dart';
 import '../resources/colors/app-colors.dart';
 import '../resources/fonts/app_font_style.dart';
 import '../resources/strings/app_stings.dart';

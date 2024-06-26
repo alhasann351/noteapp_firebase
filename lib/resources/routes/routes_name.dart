@@ -8,4 +8,5 @@ class RoutesName{
   static const String loginPhoneNumberScreen = '/login_with_phone_number';
   static const String otpVerifyScreen = '/otp_verify_screen';
   static const String updateNotesScreen = '/update_notes_screen';
+  static const String favoriteNotesScreen = '/favorite_notes_screen';
 }
