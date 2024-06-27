@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:noteapp_firebase/resources/components/no_internet_alert_dialog.dart';
-
 import '../../resources/colors/app-colors.dart';
 import '../../resources/components/loading_animation_submit.dart';
 import '../../resources/fonts/app_font_style.dart';
