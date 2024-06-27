@@ -25,7 +25,8 @@ class _FavoriteNotesScreenState extends State<FavoriteNotesScreen> {
   final dynamic _fireStore = FirebaseFirestore.instance
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser!.uid)
-      .collection('notes').where('favorite', isEqualTo: "true")
+      .collection('notes')
+      .where('favorite', isEqualTo: "true")
       .orderBy('id', descending: true)
       .snapshots();
 
@@ -33,8 +34,6 @@ class _FavoriteNotesScreenState extends State<FavoriteNotesScreen> {
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser!.uid)
       .collection('notes');
-
-  bool flag = true;
 
   @override
   Widget build(BuildContext context) {
@@ -53,33 +52,32 @@ class _FavoriteNotesScreenState extends State<FavoriteNotesScreen> {
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: _fireStore,
-        builder: (BuildContext context,
-            AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return LoadingAnimationSubmit();
-          }
-          if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          }
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text('No favorite notes found'));
-          }
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GridView.builder(
-              itemCount: snapshot.data!.docs.length,
-              gridDelegate:
-              const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8.0,
-                mainAxisSpacing: 8.0,
-                mainAxisExtent: 280,
-              ),
-              itemBuilder: (context, index) {
+          stream: _fireStore,
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return LoadingAnimationSubmit();
+            }
+            if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            }
+            if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+              return const Center(child: Text('No favorite notes found'));
+            }
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.builder(
+                itemCount: snapshot.data!.docs.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 8.0,
+                  mainAxisSpacing: 8.0,
+                  mainAxisExtent: 280,
+                ),
+                itemBuilder: (context, index) {
                   return Card(
                     color: AppColors.cardBackgroundColor[
-                    index % AppColors.cardBackgroundColor.length],
+                        index % AppColors.cardBackgroundColor.length],
                     child: Column(
                       children: [
                         Expanded(
@@ -99,11 +97,9 @@ class _FavoriteNotesScreenState extends State<FavoriteNotesScreen> {
                               ),
                             ),
                             subtitle: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 4, bottom: 8),
+                              padding: const EdgeInsets.only(top: 4, bottom: 8),
                               child: Text(
-                                snapshot
-                                    .data!.docs[index]['note-content']
+                                snapshot.data!.docs[index]['note-content']
                                     .toString(),
                                 maxLines: 7,
                                 style: const TextStyle(
@@ -121,20 +117,23 @@ class _FavoriteNotesScreenState extends State<FavoriteNotesScreen> {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15),
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment:
-                              CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 GestureDetector(
-                                  onTap: (){
-                                    Get.toNamed(RoutesName.updateNotesScreen, arguments: {
-                                      'note-id': snapshot.data!.docs[index]['id'].toString(),
-                                      'note-title': snapshot.data!.docs[index]['note-title'].toString(),
-                                      'note-content': snapshot
-                                          .data!.docs[index]['note-content']
-                                          .toString(),
-                                    });
+                                  onTap: () {
+                                    Get.toNamed(RoutesName.updateNotesScreen,
+                                        arguments: {
+                                          'note-id': snapshot
+                                              .data!.docs[index]['id']
+                                              .toString(),
+                                          'note-title': snapshot
+                                              .data!.docs[index]['note-title']
+                                              .toString(),
+                                          'note-content': snapshot
+                                              .data!.docs[index]['note-content']
+                                              .toString(),
+                                        });
                                   },
                                   child: const CircleAvatar(
                                     child: Icon(Icons.edit_note),
@@ -143,15 +142,15 @@ class _FavoriteNotesScreenState extends State<FavoriteNotesScreen> {
                                 GestureDetector(
                                   onTap: () {
                                     _reference
-                                        .doc(snapshot
-                                        .data!.docs[index]['id']
-                                        .toString())
+                                        .doc(snapshot.data!.docs[index]['id']
+                                            .toString())
                                         .delete()
                                         .then((value) {
-                                      AppUtil().showToastMessage('Note deleted');
+                                      AppUtil()
+                                          .showToastMessage('Note deleted');
                                     }).onError((error, stackTrace) {
-                                      AppUtil().showToastMessage(
-                                          'Note not deleted');
+                                      AppUtil()
+                                          .showToastMessage('Note not deleted');
                                     });
                                   },
                                   child: const CircleAvatar(
@@ -159,32 +158,50 @@ class _FavoriteNotesScreenState extends State<FavoriteNotesScreen> {
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: (){
-                                    if(flag){
-                                      _reference.doc(snapshot.data!.docs[index]['id'].toString()).update({
+                                  onTap: () {
+                                    if (snapshot.data!.docs[index]
+                                            ['favorite'] ==
+                                        'false'.toString()) {
+                                      _reference
+                                          .doc(snapshot.data!.docs[index]['id']
+                                              .toString())
+                                          .update({
                                         'favorite': 'true',
-                                      }).then((value){
-                                        AppUtil().showToastMessage('Note added in favorite');
-                                      }).onError((error, stackTrace){
-                                        AppUtil().showToastMessage('Note not added in favorite');
+                                      }).then((value) {
+                                        AppUtil().showToastMessage(
+                                            'Note added in favorite');
+                                      }).onError((error, stackTrace) {
+                                        AppUtil().showToastMessage(
+                                            'Note not added in favorite');
                                       });
-                                      flag = false;
-                                    }else{
-                                      _reference.doc(snapshot.data!.docs[index]['id'].toString()).update({
+                                    } else {
+                                      _reference
+                                          .doc(snapshot.data!.docs[index]['id']
+                                              .toString())
+                                          .update({
                                         'favorite': 'false',
-                                      }).then((value){
-                                        AppUtil().showToastMessage('Note remove in favorite');
-                                      }).onError((error, stackTrace){
-                                        AppUtil().showToastMessage('Note not remove in favorite');
+                                      }).then((value) {
+                                        AppUtil().showToastMessage(
+                                            'Note remove in favorite');
+                                      }).onError((error, stackTrace) {
+                                        AppUtil().showToastMessage(
+                                            'Note not remove in favorite');
                                       });
-                                      flag = true;
                                     }
                                   },
                                   child: CircleAvatar(
-                                    child: snapshot.data!.docs[index]['favorite']=='true'.toString() ?  const Icon(
-                                      Icons.favorite_rounded, color: Colors.red,) : const Icon(
-                                      Icons.favorite_border_rounded,),
-                                  ),),
+                                    child: snapshot.data!.docs[index]
+                                                ['favorite'] ==
+                                            'true'.toString()
+                                        ? const Icon(
+                                            Icons.favorite_rounded,
+                                            color: Colors.red,
+                                          )
+                                        : const Icon(
+                                            Icons.favorite_border_rounded,
+                                          ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -192,12 +209,10 @@ class _FavoriteNotesScreenState extends State<FavoriteNotesScreen> {
                       ],
                     ),
                   );
-              },
-            ),
-          );
-          }
-
-      ),
+                },
+              ),
+            );
+          }),
     );
   }
 }

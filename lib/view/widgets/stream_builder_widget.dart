@@ -32,14 +32,11 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
       .doc(FirebaseAuth.instance.currentUser!.uid)
       .collection('notes');
 
-  bool flag = true;
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: _fireStore,
-      builder: (BuildContext context,
-          AsyncSnapshot<QuerySnapshot> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return LoadingAnimationSubmit();
         }
@@ -54,8 +51,7 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
             padding: const EdgeInsets.all(8.0),
             child: GridView.builder(
               itemCount: snapshot.data!.docs.length,
-              gridDelegate:
-              const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
@@ -64,7 +60,7 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
               itemBuilder: (context, index) {
                 return Card(
                   color: AppColors.cardBackgroundColor[
-                  index % AppColors.cardBackgroundColor.length],
+                      index % AppColors.cardBackgroundColor.length],
                   child: Column(
                     children: [
                       Expanded(
@@ -72,8 +68,7 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
                         child: ListTile(
                           onTap: () {},
                           title: Text(
-                            snapshot.data!.docs[index]['note-title']
-                                .toString(),
+                            snapshot.data!.docs[index]['note-title'].toString(),
                             maxLines: 1,
                             style: const TextStyle(
                               overflow: TextOverflow.ellipsis,
@@ -84,11 +79,9 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
                             ),
                           ),
                           subtitle: Padding(
-                            padding: const EdgeInsets.only(
-                                top: 4, bottom: 8),
+                            padding: const EdgeInsets.only(top: 4, bottom: 8),
                             child: Text(
-                              snapshot
-                                  .data!.docs[index]['note-content']
+                              snapshot.data!.docs[index]['note-content']
                                   .toString(),
                               maxLines: 7,
                               style: const TextStyle(
@@ -106,20 +99,23 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
                         child: Padding(
                           padding: const EdgeInsets.only(top: 15),
                           child: Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment:
-                            CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               GestureDetector(
-                                onTap: (){
-                                  Get.toNamed(RoutesName.updateNotesScreen, arguments: {
-                                    'note-id': snapshot.data!.docs[index]['id'].toString(),
-                                    'note-title': snapshot.data!.docs[index]['note-title'].toString(),
-                                    'note-content': snapshot
-                                        .data!.docs[index]['note-content']
-                                        .toString(),
-                                  });
+                                onTap: () {
+                                  Get.toNamed(RoutesName.updateNotesScreen,
+                                      arguments: {
+                                        'note-id': snapshot
+                                            .data!.docs[index]['id']
+                                            .toString(),
+                                        'note-title': snapshot
+                                            .data!.docs[index]['note-title']
+                                            .toString(),
+                                        'note-content': snapshot
+                                            .data!.docs[index]['note-content']
+                                            .toString(),
+                                      });
                                 },
                                 child: const CircleAvatar(
                                   child: Icon(Icons.edit_note),
@@ -128,15 +124,14 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
                               GestureDetector(
                                 onTap: () {
                                   _reference
-                                      .doc(snapshot
-                                      .data!.docs[index]['id']
-                                      .toString())
+                                      .doc(snapshot.data!.docs[index]['id']
+                                          .toString())
                                       .delete()
                                       .then((value) {
                                     AppUtil().showToastMessage('Note deleted');
                                   }).onError((error, stackTrace) {
-                                    AppUtil().showToastMessage(
-                                        'Note not deleted');
+                                    AppUtil()
+                                        .showToastMessage('Note not deleted');
                                   });
                                 },
                                 child: const CircleAvatar(
@@ -144,32 +139,49 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: (){
-                                  if(flag){
-                                    _reference.doc(snapshot.data!.docs[index]['id'].toString()).update({
+                                onTap: () {
+                                  if (snapshot.data!.docs[index]['favorite'] ==
+                                      'false'.toString()) {
+                                    _reference
+                                        .doc(snapshot.data!.docs[index]['id']
+                                            .toString())
+                                        .update({
                                       'favorite': 'true',
-                                    }).then((value){
-                                      AppUtil().showToastMessage('Note added in favorite');
-                                    }).onError((error, stackTrace){
-                                      AppUtil().showToastMessage('Note not added in favorite');
+                                    }).then((value) {
+                                      AppUtil().showToastMessage(
+                                          'Note added in favorite');
+                                    }).onError((error, stackTrace) {
+                                      AppUtil().showToastMessage(
+                                          'Note not added in favorite');
                                     });
-                                    flag = false;
-                                  }else{
-                                    _reference.doc(snapshot.data!.docs[index]['id'].toString()).update({
+                                  } else {
+                                    _reference
+                                        .doc(snapshot.data!.docs[index]['id']
+                                            .toString())
+                                        .update({
                                       'favorite': 'false',
-                                    }).then((value){
-                                      AppUtil().showToastMessage('Note remove in favorite');
-                                    }).onError((error, stackTrace){
-                                      AppUtil().showToastMessage('Note not remove in favorite');
+                                    }).then((value) {
+                                      AppUtil().showToastMessage(
+                                          'Note remove in favorite');
+                                    }).onError((error, stackTrace) {
+                                      AppUtil().showToastMessage(
+                                          'Note not remove in favorite');
                                     });
-                                    flag = true;
                                   }
                                 },
                                 child: CircleAvatar(
-                                  child: snapshot.data!.docs[index]['favorite']=='true'.toString() ?  const Icon(
-                                    Icons.favorite_rounded, color: Colors.red,) : const Icon(
-                                    Icons.favorite_border_rounded,),
-                                ),),
+                                  child: snapshot.data!.docs[index]
+                                              ['favorite'] ==
+                                          'true'.toString()
+                                      ? const Icon(
+                                          Icons.favorite_rounded,
+                                          color: Colors.red,
+                                        )
+                                      : const Icon(
+                                          Icons.favorite_border_rounded,
+                                        ),
+                                ),
+                              ),
                             ],
                           ),
                         ),

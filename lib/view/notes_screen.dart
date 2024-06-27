@@ -104,7 +104,7 @@ class _NotesScreenState extends State<NotesScreen> {
                   ),
                 ),
                 PopupMenuItem(
-                  onTap: (){
+                  onTap: () {
                     Get.toNamed(RoutesName.favoriteNotesScreen);
                   },
                   child: ListTile(
