@@ -9,4 +9,5 @@ class RoutesName{
   static const String otpVerifyScreen = '/otp_verify_screen';
   static const String updateNotesScreen = '/update_notes_screen';
   static const String favoriteNotesScreen = '/favorite_notes_screen';
+  static const String showNotesScreen = '/show_notes_screen';
 }

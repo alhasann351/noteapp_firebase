@@ -66,7 +66,18 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
                       Expanded(
                         flex: 2,
                         child: ListTile(
-                          onTap: () {},
+                          onTap: () {
+                            Get.toNamed(RoutesName.showNotesScreen, arguments: {
+                              'notes-id':
+                                  snapshot.data!.docs[index]['id'].toString(),
+                              'note-title': snapshot
+                                  .data!.docs[index]['note-title']
+                                  .toString(),
+                              'note-content': snapshot
+                                  .data!.docs[index]['note-content']
+                                  .toString(),
+                            });
+                          },
                           title: Text(
                             snapshot.data!.docs[index]['note-title'].toString(),
                             maxLines: 1,
