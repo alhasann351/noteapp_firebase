@@ -7,8 +7,10 @@ import 'package:noteapp_firebase/resources/colors/app-colors.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
 import 'package:noteapp_firebase/data/logout.dart';
 import 'package:noteapp_firebase/utils/app_util.dart';
+import 'package:noteapp_firebase/view/widgets/favorite_notes_stream_builder.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
 
+import '../routes/routes_name.dart';
 import '../themes/themes.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -133,6 +135,7 @@ class AppDrawer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: GestureDetector(
                   onTap: (){
+                    Get.toNamed(RoutesName.favoriteNotesScreen);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
