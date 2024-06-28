@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:noteapp_firebase/resources/components/rounded_button.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
 
@@ -55,8 +54,7 @@ class _ShowNotesScreenState extends State<ShowNotesScreen> {
                     ..text = Get.arguments['note-title'],
                   style: const TextStyle(
                       fontSize: 22,
-                      fontFamily: AppFontStyle.amaranth,
-                      fontWeight: FontWeight.bold),
+                      fontFamily: AppFontStyle.amaranth),
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     filled: true,
@@ -97,7 +95,7 @@ class _ShowNotesScreenState extends State<ShowNotesScreen> {
                   width: double.infinity,
                   child: RoundedButton(
                     backgroundColor: AppColors.buttonColor,
-                    title: 'Update',
+                    title: 'Save to change',
                     textStyle: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,

@@ -59,7 +59,7 @@ class _UpdateNotesScreenState extends State<UpdateNotesScreen> {
                     minLines: 2,
                     maxLines: 2,
                     cursorColor: AppColors.blackColor,
-                    style: const TextStyle(color: AppColors.blackColor),
+                    style: const TextStyle(color: AppColors.blackColor, fontSize: 20, fontFamily: AppFontStyle.amaranth),
                     keyboardType: TextInputType.text,
                     controller: updateNoteTitleController..text =
                     Get.arguments['note-title'].toString(),
@@ -100,7 +100,7 @@ class _UpdateNotesScreenState extends State<UpdateNotesScreen> {
                     maxLines: 15,
                     minLines: 15,
                     cursorColor: AppColors.blackColor,
-                    style: const TextStyle(color: AppColors.blackColor),
+                    style: const TextStyle(color: AppColors.blackColor, fontSize: 20, fontFamily: AppFontStyle.amaranth),
                     keyboardType: TextInputType.text,
                     controller: updateNoteContentController..text =
                     Get.arguments['note-content'].toString(),

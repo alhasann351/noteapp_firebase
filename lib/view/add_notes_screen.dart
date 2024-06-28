@@ -48,7 +48,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                     minLines: 2,
                     maxLines: 2,
                     cursorColor: AppColors.blackColor,
-                    style: const TextStyle(color: AppColors.blackColor),
+                    style: const TextStyle(color: AppColors.blackColor, fontSize: 20, fontFamily: AppFontStyle.amaranth),
                     keyboardType: TextInputType.text,
                     controller: addNoteController.noteTitleController.value,
                     decoration: InputDecoration(
@@ -88,7 +88,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                     maxLines: 15,
                     minLines: 15,
                     cursorColor: AppColors.blackColor,
-                    style: const TextStyle(color: AppColors.blackColor),
+                    style: const TextStyle(color: AppColors.blackColor, fontSize: 20, fontFamily: AppFontStyle.amaranth),
                     keyboardType: TextInputType.text,
                     controller: addNoteController.noteContentController.value,
                     decoration: InputDecoration(
