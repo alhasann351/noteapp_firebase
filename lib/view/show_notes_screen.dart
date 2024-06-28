@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
 
 import '../resources/colors/app-colors.dart';
@@ -14,6 +16,10 @@ class ShowNotesScreen extends StatefulWidget {
 
 class _ShowNotesScreenState extends State<ShowNotesScreen> {
   final ThemeController themeController = Get.put(ThemeController());
+  final TextEditingController notesTitleEditingController =
+      TextEditingController();
+  final TextEditingController notesContentEditingController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,31 +38,50 @@ class _ShowNotesScreenState extends State<ShowNotesScreen> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-        child: ListView(
-          children: [
-        Text(
-        Get.arguments['note-title'].toString(),
-          textAlign: TextAlign.justify,
-        style: const TextStyle(
-          //color: AppColors.whiteColor,
-          fontFamily: AppFontStyle.amaranth,
-          fontSize: 25,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      const SizedBox(height: 15,),
-      Text(
-        Get.arguments['note-content'].toString(),
-        textAlign: TextAlign.start,
-        style: const TextStyle(
-          height: 1.5,
-          //color: AppColors.whiteColor,
-          fontFamily: AppFontStyle.amaranth,
-          fontSize: 21,
-        ),
-      )],
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 50,
+                child: TextFormField(
+                  cursorColor: themeController.isDarkMode.value
+                      ? AppColors.whiteColor
+                      : AppColors.blackColor,
+                  keyboardType: TextInputType.text,
+                  controller: notesTitleEditingController
+                    ..text = Get.arguments['note-title'], style: const TextStyle(fontSize: 22, fontFamily: AppFontStyle.amaranth, fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    filled: true,
+                    fillColor: themeController.isDarkMode.value
+                        ? AppColors.primaryDarkColor
+                        : AppColors.primaryLightColor,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: TextFormField(
+                  expands: true,
+                  maxLines: null,
+                  minLines: null,
+                  cursorColor: themeController.isDarkMode.value
+                      ? AppColors.whiteColor
+                      : AppColors.blackColor,
+                  keyboardType: TextInputType.text,
+                  controller: notesContentEditingController
+                    ..text = Get.arguments['note-content'], style: const TextStyle(height: 1.5, fontSize: 20, fontFamily: AppFontStyle.amaranth),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    filled: true,
+                    fillColor: themeController.isDarkMode.value
+                        ? AppColors.primaryDarkColor
+                        : AppColors.primaryLightColor,
+                  ),
+                ),
+              ),
+        ]),
       ),
     );
   }

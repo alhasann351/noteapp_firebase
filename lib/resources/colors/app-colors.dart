@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
 
 class AppColors{
   static const Color appBarColor = Color(0xFF6a7dff);
