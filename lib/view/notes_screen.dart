@@ -12,6 +12,8 @@ import 'package:noteapp_firebase/resources/strings/app_stings.dart';
 import 'package:noteapp_firebase/view/widgets/stream_builder_widget.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
 
+import '../view_models/controller/view_controller.dart';
+
 class NotesScreen extends StatefulWidget {
   const NotesScreen({super.key});
 
@@ -22,6 +24,7 @@ class NotesScreen extends StatefulWidget {
 class _NotesScreenState extends State<NotesScreen> {
   ExitDialog exitDialog = ExitDialog();
   final themeController = Get.put(ThemeController());
+  final ViewController viewController = Get.put(ViewController());
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,10 @@ class _NotesScreenState extends State<NotesScreen> {
             ),
           ),
           actions: [
-            PopupMenuButton(
+            PopupMenuButton<String>(
+              onSelected: (String value){
+                viewController.updateView(value);
+              },
               elevation: 30,
               shadowColor: AppColors.blackColor,
               /*color: themeController.isDarkMode.value
@@ -67,7 +73,8 @@ class _NotesScreenState extends State<NotesScreen> {
                 size: 40,
               ),
               itemBuilder: (context) => [
-                PopupMenuItem(
+                PopupMenuItem<String>(
+                  value: 'List view',
                   child: ListTile(
                     title: const Text(
                       AppStrings.listView,
@@ -85,7 +92,8 @@ class _NotesScreenState extends State<NotesScreen> {
                     ),
                   ),
                 ),
-                PopupMenuItem(
+                PopupMenuItem<String>(
+                  value: 'Grid view',
                   child: ListTile(
                     title: const Text(
                       AppStrings.gridView,
