@@ -46,7 +46,7 @@ class _FavoriteNotesStreamBuilderState extends State<FavoriteNotesStreamBuilder>
             return LoadingAnimationSubmit();
           }
           if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            return const Center(child: Text('Error'));
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const Center(child: Text('No favorite notes found'));
