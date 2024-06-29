@@ -57,6 +57,14 @@ class _ProfileStreamBuilderState extends State<ProfileStreamBuilder> {
                   color: AppColors.whiteColor,
                 ),
               ),
+              Text(
+                'Phone: ${data['phone']}',
+                style: const TextStyle(
+                  fontFamily: AppFontStyle.amaranth,
+                  fontSize: 16,
+                  color: AppColors.whiteColor,
+                ),
+              ),
             ],
           );
         });

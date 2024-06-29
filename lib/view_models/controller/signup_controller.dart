@@ -36,6 +36,7 @@ class SignupController extends GetxController {
       _fireStore.doc(FirebaseAuth.instance.currentUser!.uid).set({
         'name' : nameController.value.text.toString(),
         'email' : emailController.value.text.toString(),
+        'phone': '',
         'password' : passwordController.value.text.toString(),
       }).then((value){
         loadingAnimation.value = false;

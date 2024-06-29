@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:noteapp_firebase/utils/app_util.dart';
@@ -32,7 +33,9 @@ class AuthController extends GetxController {
         this.verificationId.value = verificationId;
         isLoading.value = false;
         //Get.to(() => OTPScreen());
-        Get.toNamed(RoutesName.otpVerifyScreen);
+        Get.toNamed(RoutesName.otpVerifyScreen, arguments: {
+          'number': phoneNumber,
+        });
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         this.verificationId.value = verificationId;
@@ -40,7 +43,7 @@ class AuthController extends GetxController {
     );
   }
 
-  void verifyOTP(String smsCode) async {
+  void verifyOTP(String smsCode, String number) async {
     isLoading.value = true;
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId.value, smsCode: smsCode);
@@ -50,6 +53,15 @@ class AuthController extends GetxController {
       sharedPreferences.setString('login', login);
       isLoading.value = false;
       //Get.offAll(() => HomeScreen());
+      final _fireStore = FirebaseFirestore.instance.collection('users');
+      _fireStore.doc(FirebaseAuth.instance.currentUser!.uid).set({
+        'name' : '',
+        'email' : '',
+        'phone' : number,
+        'password' : '',
+      }).onError((error, stackTrace){
+        AppUtil().showToastMessage('Phone number not upload in server');
+      });
       Get.offAllNamed(RoutesName.notesScreen);
     } catch (e) {
       isLoading.value = false;

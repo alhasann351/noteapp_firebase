@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
+import 'package:noteapp_firebase/utils/app_util.dart';
 import 'package:noteapp_firebase/view_models/controller/auth_controller.dart';
 import '../resources/assets/image_icon_assets.dart';
 import '../resources/colors/app-colors.dart';
@@ -178,7 +181,8 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                       ),
                       onTap: () {
                         if (completePhoneNumber.isEmpty || completePhoneNumber.length < 10) {
-                          Get.snackbar('Error', 'Please enter a valid phone number');
+                          AppUtil().showToastMessage('Please enter a valid phone number');
+                          //Get.snackbar('Error', 'Please enter a valid phone number');
                         } else {
                           authController.signInWithPhoneNumber(completePhoneNumber);
                         }

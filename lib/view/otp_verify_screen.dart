@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -470,7 +471,7 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                         }
 */
                         String otp = otpControllers.map((controller) => controller.text).join();
-                        authController.verifyOTP(otp);
+                        authController.verifyOTP(otp, Get.arguments['number']);
                       },
                     ),),
                   ),
