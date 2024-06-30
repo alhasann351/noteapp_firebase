@@ -1,21 +1,16 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:noteapp_firebase/resources/assets/image_icon_assets.dart';
 import 'package:noteapp_firebase/resources/colors/app-colors.dart';
-import 'package:noteapp_firebase/resources/components/loading_animation_submit.dart';
+import 'package:noteapp_firebase/resources/components/update_profile_dialog.dart';
 import 'package:noteapp_firebase/resources/fonts/app_font_style.dart';
 import 'package:noteapp_firebase/data/logout.dart';
 import 'package:noteapp_firebase/utils/app_util.dart';
-import 'package:noteapp_firebase/view/widgets/favorite_notes_stream_builder.dart';
 import 'package:noteapp_firebase/view/widgets/profile_stream_builder.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
-
 import '../routes/routes_name.dart';
-import '../themes/themes.dart';
 
 class AppDrawer extends StatelessWidget {
   AppDrawer({super.key});
@@ -63,10 +58,12 @@ class AppDrawer extends StatelessWidget {
                           itemBuilder: (context) => [
                             PopupMenuItem(
                               value: 1,
-                              onTap: () {},
+                              onTap: () {
+                                UpdateProfileDialog().showUpdateProfileDialog(context);
+                              },
                               child: ListTile(
                                 title: const Text(
-                                  'Edit Profile',
+                                  'Update Profile',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,

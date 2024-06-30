@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:noteapp_firebase/resources/assets/image_icon_assets.dart';
 import 'package:noteapp_firebase/resources/colors/app-colors.dart';
-import 'package:noteapp_firebase/resources/components/no_internet_alert_dialog.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
 
 import '../fonts/app_font_style.dart';
