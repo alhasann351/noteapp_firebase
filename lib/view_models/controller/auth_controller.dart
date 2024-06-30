@@ -53,16 +53,33 @@ class AuthController extends GetxController {
       sharedPreferences.setString('login', login);
       isLoading.value = false;
       //Get.offAll(() => HomeScreen());
-      final _fireStore = FirebaseFirestore.instance.collection('users');
-      _fireStore.doc(FirebaseAuth.instance.currentUser!.uid).set({
-        'name' : '',
-        'email' : '',
-        'phone' : number,
-        'password' : '',
-      }).onError((error, stackTrace){
-        AppUtil().showToastMessage('Phone number not upload in server');
+      Future<bool> isNewUser(User user) async {
+        DocumentSnapshot doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+        return !doc.exists;
+      }
+      FirebaseAuth.instance.authStateChanges().listen((User? user) async {
+        if (user != null) {
+          bool isNew = await isNewUser(user);
+          if (isNew) {
+            // User is new
+            final _fireStore = FirebaseFirestore.instance.collection('users');
+            _fireStore.doc(FirebaseAuth.instance.currentUser!.uid).set({
+              'name' : '',
+              'email' : '',
+              'phone' : number,
+              'password' : '',
+            }).onError((error, stackTrace){
+              AppUtil().showToastMessage('Phone number not upload in server');
+            });
+            Get.offAllNamed(RoutesName.notesScreen);
+          } else {
+            // Existing user
+            Get.offAllNamed(RoutesName.notesScreen);
+          }
+        }
       });
-      Get.offAllNamed(RoutesName.notesScreen);
+
+
     } catch (e) {
       isLoading.value = false;
       AppUtil().showToastMessage('Invalid OTP');
