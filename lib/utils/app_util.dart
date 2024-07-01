@@ -1,7 +1,6 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:noteapp_firebase/resources/colors/app-colors.dart';
-import 'package:noteapp_firebase/resources/components/no_internet_alert_dialog.dart';
 import 'package:noteapp_firebase/view_models/controller/theme_controller.dart';
 
 class AppUtil {

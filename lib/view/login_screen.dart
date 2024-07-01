@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       TextFormField(
                         cursorColor: AppColors.blackColor,
-                        style: const TextStyle(color: AppColors.blackColor),
+                        style: const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth,),
                         keyboardType: TextInputType.emailAddress,
                         controller: loginController.emailController.value,
                         decoration: InputDecoration(
@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Obx(() => TextFormField(
                         cursorColor: AppColors.blackColor,
-                        style: const TextStyle(color: AppColors.blackColor),
+                        style: const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth,),
                         keyboardType: TextInputType.text,
                         obscureText: showPasswordController.showPassword.value,
                         controller: loginController.passwordController.value,

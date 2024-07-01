@@ -70,7 +70,7 @@ class UpdateProfileDialog {
                       children: [
                         TextFormField(
                           cursorColor: AppColors.blackColor,
-                          style: const TextStyle(color: AppColors.blackColor),
+                          style: const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth,),
                           keyboardType: TextInputType.text,
                           controller: nameController,
                           decoration: InputDecoration(
@@ -102,7 +102,7 @@ class UpdateProfileDialog {
                         ),
                         TextFormField(
                           cursorColor: AppColors.blackColor,
-                          style: const TextStyle(color: AppColors.blackColor),
+                          style: const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth,),
                           keyboardType: TextInputType.emailAddress,
                           controller: emailController,
                           decoration: InputDecoration(
@@ -134,7 +134,7 @@ class UpdateProfileDialog {
                         ),
                         TextFormField(
                           cursorColor: AppColors.blackColor,
-                          style: const TextStyle(color: AppColors.blackColor),
+                          style: const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth,),
                           keyboardType: TextInputType.text,
                           controller: phoneController,
                           decoration: InputDecoration(

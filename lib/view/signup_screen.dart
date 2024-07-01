@@ -106,7 +106,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     children: [
                       TextFormField(
                         cursorColor: AppColors.blackColor,
-                        style: const TextStyle(color: AppColors.blackColor),
+                        style: const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth,),
                         keyboardType: TextInputType.text,
                         controller: signupController.nameController.value,
                         decoration: InputDecoration(
@@ -145,7 +145,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       TextFormField(
                         cursorColor: AppColors.blackColor,
-                        style: const TextStyle(color: AppColors.blackColor),
+                        style: const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth,),
                         keyboardType: TextInputType.emailAddress,
                         controller: signupController.emailController.value,
                         decoration: InputDecoration(
@@ -184,7 +184,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       Obx(() => TextFormField(
                         cursorColor: AppColors.blackColor,
-                        style: const TextStyle(color: AppColors.blackColor),
+                        style: const TextStyle(color: AppColors.blackColor, fontFamily: AppFontStyle.amaranth,),
                         keyboardType: TextInputType.text,
                         obscureText: showPasswordController.showPassword.value,
                         controller: signupController.passwordController.value,
